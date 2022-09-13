@@ -55,7 +55,7 @@ beautiful.border_focus = "#1688f0"
 beautiful.border_marked = "#16f088"
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "konsole"
+local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 
