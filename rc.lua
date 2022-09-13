@@ -115,7 +115,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create widgets
 local clock_widget = wibox.widget {
-    format = '%I:%M %P, %a %b %d ',
+    format = '  %I:%M %P, %a %b %d ',
     widget = wibox.widget.textclock
 }
 local volume_widget = require("widgets.volume-widget.volume")
@@ -196,6 +196,7 @@ awful.screen.connect_for_each_screen(function(screen)
         awful.button({}, 3, function() awful.layout.inc(-1) end),
         awful.button({}, 4, function() awful.layout.inc(1) end),
         awful.button({}, 5, function() awful.layout.inc(-1) end)))
+
     -- Create a taglist widget
     screen.taglist_widget = awful.widget.taglist {
         screen  = screen,
@@ -205,9 +206,57 @@ awful.screen.connect_for_each_screen(function(screen)
 
     -- Create a tasklist widget
     screen.tasklist_widget = awful.widget.tasklist {
-        screen  = screen,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
+        screen          = screen,
+        filter          = awful.widget.tasklist.filter.currenttags,
+        buttons         = tasklist_buttons,
+        style           = {
+            shape_border_width = 1,
+            shape_border_color = '#1688f0',
+            shape              = gears.shape.rounded_rect,
+            bg_focus           = '#1688f0',
+            fg_focus           = '#111',
+
+        },
+        layout          = {
+            spacing        = 10,
+            fixed_width    = 50,
+            spacing_widget = {
+                {
+                    forced_width = 20,
+                    color        = '#1688f0',
+                    shape        = '-',
+                    widget       = wibox.widget.separator
+                },
+                valign = 'center',
+                halign = 'center',
+                widget = wibox.container.place,
+            },
+            layout         = wibox.layout.flex.horizontal
+        },
+        -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+        -- not a widget instance.
+        widget_template = {
+            { { { {
+                id     = 'icon_role',
+                widget = wibox.widget.imagebox,
+            },
+                margins = 2,
+                widget = wibox.container.margin,
+            },
+                {
+                    id     = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.fixed.horizontal,
+            },
+                left = 10,
+                right = 10,
+                widget = wibox.container.margin,
+                forced_width = 10,
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+        },
     }
 
     -- Create the wibox
