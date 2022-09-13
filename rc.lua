@@ -102,15 +102,15 @@ local mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.
 }
 })
 
-local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-    menu = mymainmenu })
+-- local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+--     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
-local mykeyboardlayout = awful.widget.keyboardlayout()
+-- local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -200,7 +200,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
     }
 
     -- Create the wibox
@@ -211,17 +211,14 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            -- mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
         },
     }
 end)
