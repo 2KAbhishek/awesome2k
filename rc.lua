@@ -122,6 +122,7 @@ local volume_widget = require("widgets.volume-widget.volume")
 local net_speed_widget = require("widgets.net-speed-widget.net-speed")
 local battery_widget = require("widgets.battery-widget.battery")
 local logout_menu_widget = require("widgets.logout-menu-widget.logout-menu")
+local todo_widget = require("widgets.todo-widget.todo")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -276,6 +277,7 @@ awful.screen.connect_for_each_screen(function(screen)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             clock_widget,
+            todo_widget(),
             net_speed_widget(),
             volume_widget(),
             battery_widget({
