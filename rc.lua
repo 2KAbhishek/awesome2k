@@ -89,7 +89,7 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-local myawesomemenu = {
+local awesome_menu = {
     { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -97,7 +97,7 @@ local myawesomemenu = {
     { "quit", function() awesome.quit() end },
 }
 
-local mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+local main_menu = awful.menu({ items = { { "awesome", awesome_menu, beautiful.awesome_icon },
     { "open terminal", terminal }
 }
 })
@@ -114,7 +114,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 -- Create widgets
-local mytextclock = wibox.widget {
+local clock_widget = wibox.widget {
     format = '%I:%M %P, %a %b %d ',
     widget = wibox.widget.textclock
 }
@@ -179,54 +179,54 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-awful.screen.connect_for_each_screen(function(s)
+awful.screen.connect_for_each_screen(function(screen)
     -- Wallpaper
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, screen, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
+    screen.prompt_widget = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
+    screen.layout_widget = awful.widget.layoutbox(screen)
+    screen.layout_widget:buttons(gears.table.join(
         awful.button({}, 1, function() awful.layout.inc(1) end),
         awful.button({}, 3, function() awful.layout.inc(-1) end),
         awful.button({}, 4, function() awful.layout.inc(1) end),
         awful.button({}, 5, function() awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
+    screen.taglist_widget = awful.widget.taglist {
+        screen  = screen,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
     }
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
+    screen.tasklist_widget = awful.widget.tasklist {
+        screen  = screen,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    screen.wibox = awful.wibar({ position = "top", screen = screen })
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
+    screen.wibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             -- mylauncher,
-            s.mylayoutbox,
-            s.mytaglist,
-            s.mypromptbox,
+            screen.layout_widget,
+            screen.taglist_widget,
+            screen.prompt_widget,
         },
-        s.mytasklist, -- Middle widget
+        screen.tasklist_widget, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mytextclock,
+            clock_widget,
             net_speed_widget(),
             volume_widget(),
             battery_widget({
@@ -243,7 +243,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({}, 3, function() mymainmenu:toggle() end),
+    awful.button({}, 3, function() main_menu:toggle() end),
     awful.button({}, 4, awful.tag.viewnext),
     awful.button({}, 5, awful.tag.viewprev)
 ))
@@ -272,7 +272,7 @@ local globalkeys = gears.table.join(
         end,
         { description = "focus previous by index", group = "client" }
     ),
-    awful.key({ modkey, }, "w", function() mymainmenu:show() end,
+    awful.key({ modkey, }, "w", function() main_menu:show() end,
         { description = "show main menu", group = "awesome" }),
 
     -- Layout manipulation
