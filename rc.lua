@@ -119,6 +119,7 @@ local mytextclock = wibox.widget {
     widget = wibox.widget.textclock
 }
 local volume_widget = require("widgets.volume-widget.volume")
+local net_speed_widget = require("widgets.net-speed-widget.net-speed")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -223,6 +224,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
+            net_speed_widget(),
             volume_widget(),
         },
     }
