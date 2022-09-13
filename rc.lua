@@ -118,6 +118,7 @@ local mytextclock = wibox.widget {
     format = '%I:%M %P, %a %b %d ',
     widget = wibox.widget.textclock
 }
+local volume_widget = require("widgets.volume-widget.volume")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -222,6 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mytextclock,
+            volume_widget(),
         },
     }
 end)
