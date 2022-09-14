@@ -346,6 +346,17 @@ local globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
         { description = "open a terminal", group = "launcher" }),
+    awful.key({}, "F12", function() awful.spawn("kitty --name floating", {
+            floating             = true,
+            tag                  = mouse.screen.selected_tag,
+            placement            = awful.placement.top,
+            opacity              = 0.9,
+            ontop                = true,
+            maximized_horizontal = true,
+            height               = 300,
+        })
+    end,
+        { description = "open a floating terminal", group = "launcher" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
