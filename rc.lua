@@ -384,14 +384,18 @@ local globalkeys = gears.table.join(
         { description = "restore minimized", group = "client" }),
 
     -- Prompt
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-        { description = "run prompt", group = "launcher" }),
+    awful.key({ modkey }, "r", function()
+        awful.util.spawn_with_shell("dmenu_run -p ' ' -fn 1 -nf '#888888' -nb '#222222' -sf '#ffffff' -sb '#1688f0'")
+    end),
+
+    -- awful.key({ modkey }, "r", function() awful.screen.focused().prompt_widget:run() end,
+    --     { description = "run prompt", group = "launcher" }),
 
     awful.key({ modkey }, "x",
         function()
             awful.prompt.run {
                 prompt       = "Run Lua code: ",
-                textbox      = awful.screen.focused().mypromptbox.widget,
+                textbox      = awful.screen.focused().prompt_widget.widget,
                 exe_callback = awful.util.eval,
                 history_path = awful.util.get_cache_dir() .. "/history_eval"
             }
