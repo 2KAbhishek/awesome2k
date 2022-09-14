@@ -45,14 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-
--- Gaps and borders
-beautiful.useless_gap = 3
-beautiful.border_width = 3
-beautiful.border_normal = "#333333"
-beautiful.border_focus = "#1688f0"
-beautiful.border_marked = "#16f088"
+beautiful.init("~/.config/awesome/awesome2k.lua")
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
