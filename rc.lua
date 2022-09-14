@@ -117,6 +117,7 @@ local battery_widget = require("widgets.battery-widget.battery")
 local logout_menu_widget = require("widgets.logout-menu-widget.logout-menu")
 local todo_widget = require("widgets.todo-widget.todo")
 
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
     awful.button({}, 1, function(t) t:view_only() end),
@@ -641,3 +642,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("autorandr -l default")
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("copyq")
