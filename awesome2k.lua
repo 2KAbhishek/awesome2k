@@ -29,7 +29,6 @@ theme.border_width    = dpi(4)
 theme.border_normal   = "#000000"
 theme.border_focus    = "#1688f0"
 theme.border_marked   = "#16f088"
-theme.border_minimize = "#16f088"
 
 -- There are other variable sets
 -- overriding the default one when
