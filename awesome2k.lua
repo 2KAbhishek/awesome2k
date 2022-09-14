@@ -10,11 +10,12 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
+local accent = "#1688f0"
 
 theme.font = "FiraCode Nerd Font 9"
 
 theme.bg_normal   = "#111111"
-theme.bg_focus    = "#1688f0"
+theme.bg_focus    = accent
 theme.bg_urgent   = "#ff0000"
 theme.bg_minimize = "#222222"
 theme.bg_systray  = theme.bg_normal
@@ -27,7 +28,7 @@ theme.fg_minimize = "#999999"
 theme.useless_gap     = dpi(3)
 theme.border_width    = dpi(4)
 theme.border_normal   = "#000000"
-theme.border_focus    = "#1688f0"
+theme.border_focus    = accent
 theme.border_marked   = "#16f088"
 
 -- There are other variable sets
@@ -127,6 +128,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
 theme.icon_theme = nil
 
 theme.systray_icon_spacing = 6
+theme.hotkeys_modifiers_fg = "#888"
 
 return theme
 
