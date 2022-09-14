@@ -158,7 +158,7 @@ local tasklist_buttons = gears.table.join(
         awful.client.focus.byidx(-1)
     end))
 
-local function set_wallpaper(s)
+local function set_wallpaper()
     awful.util.spawn("nitrogen --restore")
     -- Wallpaper
     -- if beautiful.wallpaper then
