@@ -643,3 +643,10 @@ awful.spawn.with_shell("autorandr -l default")
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("copyq")
+
+-- Run garbage collector regularly to prevent memory leaks
+gears.timer {
+    timeout = 60,
+    autostart = true,
+    callback = function() collectgarbage() end
+}
