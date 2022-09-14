@@ -271,11 +271,14 @@ awful.screen.connect_for_each_screen(function(screen)
             layout = wibox.layout.fixed.horizontal,
             clock_widget,
             todo_widget(),
-            net_speed_widget(),
             volume_widget(),
             battery_widget({
                 show_current_level = true,
                 margin_left = 4,
+                margin_right = 4,
+            }),
+            net_speed_widget({
+                width = 55,
             }),
             -- mykeyboardlayout,
             wibox.widget.systray(),
