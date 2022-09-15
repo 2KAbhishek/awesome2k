@@ -108,6 +108,14 @@ local clock_widget = wibox.widget {
     format = '  %I:%M %p  %a %b %d',
     widget = wibox.widget.textclock
 }
+
+local icon_widget = wibox.widget{
+    markup = "  ",
+    align = "center",
+    valign = "center",
+    widget = wibox.widget.textbox
+}
+
 local volume_widget = require("widgets.volume.volume")
 local net_speed_widget = require("widgets.net-speed.net-speed")
 local battery_widget = require("widgets.battery.battery")
@@ -176,7 +184,7 @@ awful.screen.connect_for_each_screen(function(screen)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "  ", " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
+    awful.tag({ " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     screen.prompt_widget = awful.widget.prompt()
@@ -256,6 +264,7 @@ awful.screen.connect_for_each_screen(function(screen)
             layout = wibox.layout.fixed.horizontal,
             spacing = 6,
             -- mylauncher,
+            icon_widget,
             screen.taglist_widget,
             screen.prompt_widget,
         },
