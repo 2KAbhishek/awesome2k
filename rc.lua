@@ -102,9 +102,6 @@ local main_menu = awful.menu({ items = { { "awesome", awesome_menu, beautiful.aw
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
--- local mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 -- Create widgets
 local clock_widget = wibox.widget {
@@ -179,7 +176,7 @@ awful.screen.connect_for_each_screen(function(screen)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "  ", " ", " ", " ", " ", " ", "" }, screen, awful.layout.layouts[1])
+    awful.tag({ "  ", " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     screen.prompt_widget = awful.widget.prompt()
@@ -257,6 +254,7 @@ awful.screen.connect_for_each_screen(function(screen)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 6,
             -- mylauncher,
             screen.taglist_widget,
             screen.prompt_widget,
@@ -268,13 +266,8 @@ awful.screen.connect_for_each_screen(function(screen)
             clock_widget,
             todo_widget(),
             volume_widget(),
-            battery_widget({
-                show_current_level = true,
-            }),
-            net_speed_widget({
-                width = 50,
-            }),
-            -- mykeyboardlayout,
+            battery_widget(),
+            net_speed_widget(),
             screen.layout_widget,
             wibox.widget.systray(),
             logout_menu_widget(),
