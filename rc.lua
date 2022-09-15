@@ -209,13 +209,13 @@ awful.screen.connect_for_each_screen(function(screen)
             shape_border_color       = '#aaa',
             shape_border_color_focus = '#1688f0',
             shape                    = gears.shape.rounded_rect,
-            bg_focus = "#000",
-            fg_focus = "#1688f0",
+            bg_focus                 = "#000",
+            fg_focus                 = "#1688f0",
         },
         layout          = {
-            spacing        = 8,
-            fixed_width    = 50,
-            layout         = wibox.layout.flex.horizontal
+            spacing     = 8,
+            fixed_width = 50,
+            layout      = wibox.layout.flex.horizontal
         },
         -- Notice that there is *NO* wibox.wibox prefix, it is a template,
         -- not a widget instance.
