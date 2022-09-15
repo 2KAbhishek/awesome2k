@@ -205,12 +205,12 @@ awful.screen.connect_for_each_screen(function(screen)
         filter          = awful.widget.tasklist.filter.currenttags,
         buttons         = tasklist_buttons,
         style           = {
-            shape_border_width = 1,
-            shape_border_color = '#1688f0',
-            shape              = gears.shape.rounded_rect,
-            bg_focus           = '#1688f0',
-            fg_focus           = '#111',
-
+            shape_border_width       = 1,
+            shape_border_color       = '#aaa',
+            shape_border_color_focus = '#1688f0',
+            shape                    = gears.shape.rounded_rect,
+            bg_focus = "#000",
+            fg_focus = "#1688f0",
         },
         layout          = {
             spacing        = 8,

@@ -14,16 +14,16 @@ local accent = "#1688f0"
 
 theme.font = "FiraCode Nerd Font 9"
 
-theme.bg_normal   = "#111111"
+theme.bg_normal   = "#000"
 theme.bg_focus    = accent
 theme.bg_urgent   = "#ff0000"
-theme.bg_minimize = "#222222"
+theme.bg_minimize = "#222"
 theme.bg_systray  = theme.bg_normal
 
-theme.fg_normal   = "#aaaaaa"
-theme.fg_focus    = "#000000"
+theme.fg_normal   = "#ccc"
+theme.fg_focus    = "#000"
 theme.fg_urgent   = "#ffffff"
-theme.fg_minimize = "#999999"
+theme.fg_minimize = "#aaa"
 
 theme.useless_gap     = dpi(3)
 theme.border_width    = dpi(4)
