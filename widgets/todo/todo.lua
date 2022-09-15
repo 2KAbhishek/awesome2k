@@ -1,12 +1,3 @@
--------------------------------------------------
--- ToDo Widget for Awesome Window Manager
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/todo-widget
-
--- @author Pavel Makhov
--- @copyright 2020 Pavel Makhov
--------------------------------------------------
-
 local awful = require("awful")
 local wibox = require("wibox")
 local json = require("utils.json.json")
@@ -16,7 +7,7 @@ local beautiful = require("beautiful")
 local gfs = require("gears.filesystem")
 
 local HOME_DIR = os.getenv("HOME")
-local WIDGET_DIR = HOME_DIR .. '/.config/awesome/widgets/todo-widget'
+local WIDGET_DIR = HOME_DIR .. '/.config/awesome/widgets/todo'
 local STORAGE = HOME_DIR .. '/.cache/awesome/awesome-todos.json'
 
 local GET_TODO_ITEMS = 'bash -c "cat ' .. STORAGE .. '"'

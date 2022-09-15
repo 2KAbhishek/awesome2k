@@ -1,19 +1,10 @@
--------------------------------------------------
--- The Ultimate Volume Widget for Awesome Window Manager
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/volume-widget
-
--- @author Pavel Makhov
--- @copyright 2020 Pavel Makhov
--------------------------------------------------
-
 local awful = require("awful")
 local wibox = require("wibox")
 local spawn = require("awful.spawn")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local watch = require("awful.widget.watch")
-local utils = require("widgets.volume-widget.utils")
+local utils = require("widgets.volume.utils")
 
 
 local LIST_DEVICES_CMD = [[sh -c "pacmd list-sinks; pacmd list-sources"]]
@@ -26,7 +17,7 @@ local function DEC_VOLUME_CMD(device, step) return 'amixer -D ' .. device .. ' s
 local function TOG_VOLUME_CMD(device) return 'amixer -D ' .. device .. ' sset Master toggle' end
 
 local widget_types = {
-    icon_and_text = require("widgets.volume-widget.widgets.icon-and-text-widget"),
+    icon_and_text = require("widgets.volume.widgets.icon-and-text"),
 }
 local volume = {}
 

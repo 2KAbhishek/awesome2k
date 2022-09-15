@@ -108,11 +108,11 @@ local clock_widget = wibox.widget {
     format = '  %I:%M %p  %a %b %d',
     widget = wibox.widget.textclock
 }
-local volume_widget = require("widgets.volume-widget.volume")
-local net_speed_widget = require("widgets.net-speed-widget.net-speed")
-local battery_widget = require("widgets.battery-widget.battery")
-local logout_menu_widget = require("widgets.logout-menu-widget.logout-menu")
-local todo_widget = require("widgets.todo-widget.todo")
+local volume_widget = require("widgets.volume.volume")
+local net_speed_widget = require("widgets.net-speed.net-speed")
+local battery_widget = require("widgets.battery.battery")
+local logout_menu_widget = require("widgets.logout-menu.logout-menu")
+local todo_widget = require("widgets.todo.todo")
 
 
 -- Create a wibox for each screen and add it

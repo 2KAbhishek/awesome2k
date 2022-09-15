@@ -1,19 +1,10 @@
--------------------------------------------------
--- Logout Menu Widget for Awesome Window Manager
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget
-
--- @author Pavel Makhov
--- @copyright 2020 Pavel Makhov
--------------------------------------------------
-
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
 local HOME = os.getenv('HOME')
-local ICON_DIR = HOME .. '/.config/awesome/widgets/logout-menu-widget/icons/'
+local ICON_DIR = HOME .. '/.config/awesome/widgets/logout-menu/icons/'
 
 local logout_menu_widget = wibox.widget {
     {

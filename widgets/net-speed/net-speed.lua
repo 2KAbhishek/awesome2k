@@ -1,18 +1,8 @@
--------------------------------------------------
--- Net Speed Widget for Awesome Window Manager
--- Shows current upload/download speed
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/net-speed-widget
-
--- @author Pavel Makhov
--- @copyright 2020 Pavel Makhov
--------------------------------------------------
-
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 
 local HOME_DIR = os.getenv("HOME")
-local WIDGET_DIR = HOME_DIR .. '/.config/awesome/widgets/net-speed-widget/'
+local WIDGET_DIR = HOME_DIR .. '/.config/awesome/widgets/net-speed/'
 local ICONS_DIR = WIDGET_DIR .. 'icons/'
 
 local net_speed_widget = {}
