@@ -20,22 +20,21 @@ local net_speed_widget = {}
 local function convert_to_h(bytes)
     local speed
     local dim
-    local bits = bytes * 8
-    if bits < 1000 then
-        speed = bits
-        dim = 'b/s'
-    elseif bits < 1000000 then
-        speed = bits / 1000
-        dim = 'kb/s'
-    elseif bits < 1000000000 then
-        speed = bits / 1000000
-        dim = 'mb/s'
-    elseif bits < 1000000000000 then
-        speed = bits / 1000000000
-        dim = 'gb/s'
+    if bytes < 1000 then
+        speed = bytes
+        dim = 'B'
+    elseif bytes < 1000000 then
+        speed = bytes / 1000
+        dim = 'K'
+    elseif bytes < 1000000000 then
+        speed = bytes / 1000000
+        dim = 'M'
+    elseif bytes < 1000000000000 then
+        speed = bytes / 1000000000
+        dim = 'G'
     else
-        speed = tonumber(bits)
-        dim = 'b/s'
+        speed = tonumber(bytes)
+        dim = 'B'
     end
     return math.floor(speed + 0.5) .. dim
 end
@@ -57,7 +56,7 @@ local function worker(user_args)
 
     local interface = args.interface or '*'
     local timeout = args.timeout or 1
-    local width = args.width or 40
+    local width = args.width or 30
 
     net_speed_widget = wibox.widget {
         {
