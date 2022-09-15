@@ -213,19 +213,8 @@ awful.screen.connect_for_each_screen(function(screen)
 
         },
         layout          = {
-            spacing        = 10,
+            spacing        = 8,
             fixed_width    = 50,
-            spacing_widget = {
-                {
-                    forced_width = 20,
-                    color        = '#1688f0',
-                    shape        = '-',
-                    widget       = wibox.widget.separator
-                },
-                valign = 'center',
-                halign = 'center',
-                widget = wibox.container.place,
-            },
             layout         = wibox.layout.flex.horizontal
         },
         -- Notice that there is *NO* wibox.wibox prefix, it is a template,
