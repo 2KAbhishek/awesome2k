@@ -252,7 +252,6 @@ awful.screen.connect_for_each_screen(function(screen)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             -- mylauncher,
-            screen.layout_widget,
             screen.taglist_widget,
             screen.prompt_widget,
         },
@@ -270,6 +269,7 @@ awful.screen.connect_for_each_screen(function(screen)
                 width = 50,
             }),
             -- mykeyboardlayout,
+            screen.layout_widget,
             wibox.widget.systray(),
             logout_menu_widget(),
         },
