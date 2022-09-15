@@ -108,7 +108,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 -- Create widgets
 local clock_widget = wibox.widget {
-    format = '    %I:%M %P    %a %b %d ',
+    format = '  %I:%M %p  %a %b %d',
     widget = wibox.widget.textclock
 }
 local volume_widget = require("widgets.volume-widget.volume")
