@@ -66,7 +66,7 @@ local function worker(user_args)
         },
         {
             id = 'tx_speed',
-            forced_width = width - 10,
+            forced_width = width,
             align = 'left',
             widget = wibox.widget.textbox
         },
