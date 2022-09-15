@@ -270,16 +270,15 @@ awful.screen.connect_for_each_screen(function(screen)
         screen.tasklist_widget, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 6,
             clock_widget,
             todo_widget(),
             volume_widget(),
             battery_widget({
                 show_current_level = true,
-                margin_left = 4,
-                margin_right = 4,
             }),
             net_speed_widget({
-                width = 55,
+                width = 50,
             }),
             -- mykeyboardlayout,
             wibox.widget.systray(),
