@@ -392,7 +392,7 @@ local globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey }, "r", function()
-        awful.util.spawn_with_shell("dmenu_run -p ' ' -fn 1 -nf '#888888' -nb '#222222' -sf '#ffffff' -sb '#1688f0'")
+        awful.util.spawn_with_shell("dmenu_run -p '' -fn 'FiraCode Nerd Font-14' -nf '#888888' -nb '#222222' -sf '#ffffff' -sb '#1688f0'")
     end),
 
     -- awful.key({ modkey }, "r", function() awful.screen.focused().prompt_widget:run() end,
