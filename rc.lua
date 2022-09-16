@@ -340,9 +340,13 @@ local globalkeys = gears.table.join(
         { description = "go back", group = "client" }),
 
     -- Standard program
-    awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
+    awful.key({ modkey, }, "0", function() awful.spawn(terminal) end,
         { description = "open a terminal", group = "launcher" }),
-    awful.key({}, "F12", function() awful.spawn("kitty --name floating", {
+
+    awful.key({ "Mod1", "Control" }, "t", function() awful.spawn(terminal) end,
+        { description = "open a terminal", group = "launcher" }),
+
+    awful.key({}, "F12", function() awful.spawn(terminal, {
             floating             = true,
             tag                  = mouse.screen.selected_tag,
             placement            = awful.placement.top,
@@ -421,7 +425,7 @@ local clientkeys = gears.table.join(
         { description = "close", group = "client" }),
     awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
         { description = "toggle floating", group = "client" }),
-    awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey }, "Return", function(c) c:swap(awful.client.getmaster()) end,
         { description = "move to master", group = "client" }),
     awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
         { description = "move to screen", group = "client" }),
