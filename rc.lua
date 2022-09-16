@@ -49,6 +49,8 @@ beautiful.init("~/.config/awesome/awesome2k.lua")
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
+local browser = "firefox"
+local files = "thunar"
 local editor = os.getenv("EDITOR") or "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 
@@ -357,6 +359,13 @@ local globalkeys = gears.table.join(
         })
     end,
         { description = "open a floating terminal", group = "launcher" }),
+
+    awful.key({ "Mod1", "Control" }, "e", function() awful.spawn(files) end,
+        { description = "open a file explorer", group = "launcher" }),
+
+    awful.key({ "Mod1", "Control" }, "w", function() awful.spawn(browser) end,
+        { description = "open a web browser", group = "launcher" }),
+
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
