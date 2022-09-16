@@ -109,7 +109,7 @@ local clock_widget = wibox.widget {
     widget = wibox.widget.textclock
 }
 
-local icon_widget = wibox.widget{
+local icon_widget = wibox.widget {
     markup = "  ",
     align = "center",
     valign = "center",
@@ -184,7 +184,7 @@ awful.screen.connect_for_each_screen(function(screen)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
+    awful.tag({ " ", " ", " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     screen.prompt_widget = awful.widget.prompt()
