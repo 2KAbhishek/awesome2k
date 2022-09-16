@@ -124,6 +124,7 @@ local battery_widget = require("widgets.battery.battery")
 local logout_menu_widget = require("widgets.logout-menu.logout-menu")
 local todo_widget = require("widgets.todo.todo")
 
+local round_rect = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -215,7 +216,7 @@ awful.screen.connect_for_each_screen(function(screen)
             shape_border_width       = 1,
             shape_border_color       = '#aaa',
             shape_border_color_focus = '#1688f0',
-            shape                    = gears.shape.rounded_rect,
+            shape                    = round_rect,
             bg_focus                 = "#000",
             fg_focus                 = "#1688f0",
         },
@@ -256,7 +257,7 @@ awful.screen.connect_for_each_screen(function(screen)
         screen = screen,
         border_width = 4,
         opacity = 0.7,
-        shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
+        shape = round_rect,
     })
 
     -- Add widgets to the wibox
@@ -296,7 +297,7 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
-local globalkeys = gears.table.join(
+local global_keys = gears.table.join(
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
     awful.key({ modkey, }, "Left", awful.tag.viewprev,
@@ -423,7 +424,7 @@ local globalkeys = gears.table.join(
         { description = "show the menubar", group = "launcher" })
 )
 
-local clientkeys = gears.table.join(
+local client_keys = gears.table.join(
     awful.key({ modkey, }, "f",
         function(c)
             c.fullscreen = not c.fullscreen
@@ -471,7 +472,7 @@ local clientkeys = gears.table.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-    globalkeys = gears.table.join(globalkeys,
+    global_keys = gears.table.join(global_keys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
             function()
@@ -517,7 +518,7 @@ for i = 1, 9 do
     )
 end
 
-local clientbuttons = gears.table.join(
+local client_buttons = gears.table.join(
     awful.button({}, 1, function(c)
         c:emit_signal("request::activate", "mouse_click", { raise = true })
     end),
@@ -532,7 +533,7 @@ local clientbuttons = gears.table.join(
 )
 
 -- Set keys
-root.keys(globalkeys)
+root.keys(global_keys)
 -- }}}
 
 -- {{{ Rules
@@ -544,8 +545,8 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            keys = clientkeys,
-            buttons = clientbuttons,
+            keys = client_keys,
+            buttons = client_buttons,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap + awful.placement.no_offscreen
         }
@@ -658,6 +659,9 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
+-- Rounded windows
+client.connect_signal("manage", function(c) c.shape = round_rect end)
+
 -- Autostart
 awful.spawn.with_shell("autorandr -l default")
 awful.spawn.with_shell("picom")
@@ -671,9 +675,3 @@ gears.timer {
     callback = function() collectgarbage() end
 }
 
--- Rounded windows
-client.connect_signal("manage", function(c)
-    c.shape = function(cr, w, h)
-        gears.shape.rounded_rect(cr, w, h, 10)
-    end
-end)
