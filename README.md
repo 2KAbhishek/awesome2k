@@ -32,70 +32,48 @@
 
 ## What is this
 
-awesome2k is a `<utility/tool/feature>` that allows `<insert_target_audience>` to do `<action/task_it_does>`.
+My personalized configs for awesome window manager, optimized for an awesome experience.
 
 ## Inspiration
 
-awesome2k was inspired by `<reason/idea>`.
+After using KDE for a long time with tiling support and struggling with config management, finally decided to switch to awesome.
 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
-- You have installed the latest version of `<coding_language/dependency/requirement_1>`
+- You have installed the latest version of `awesome`
 
-## Getting awesome2k
+## Setting up awesome2k
 
 To get awesome2k, follow these steps:
 
 ```bash
 git clone https://github.com/2kabhishek/awesome2k
-cd awesome2k
-<install_command>
+ln -sfnv "$PWD/awesome2k" ~/.config/awesome
 ```
 
 ## Using awesome2k
 
-```bash
-USAGE:
-    command [FLAGS] [OPTIONS]
+Hit `Super + S` key to view keyboard shortcuts.
 
-FLAGS:
-    -h, --help              Prints help information.
+### Widgets
 
-OPTIONS:
-    -o, --option <value>    Option description.
-    Options are: a, b. [default: a]
+Comes with a bunch of customized widgets:
 
-Example:
-
-
-```
+- battery
+- logout-menu
+- net-speed
+- todo
+- volume
 
 ## How it was built
 
-awesome2k was built using `<tech/library>`
-
-## Challenges faced
-
-While building awesome2k the main challenges were `<issue/difficulty>`
-
-## What I learned
-
-While building awesome2k I `<learned/accomplished>` about `<learning/accomplishment>`
-
-## What's next
-
-Planning to add `<feature/module>`.
+awesome2k was built using `nvim`
 
 ### To-Do
 
-- [x] Setup repo
-- [ ] Think real hard
-- [ ] Start typing
-- [ ] Change me
-- [ ] Update README
-- [ ] Finish it
+- [ ] Customize keybindings
 
 Hit the ⭐ button if you found this useful.
 
