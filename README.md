@@ -23,7 +23,7 @@
 <h3>Configs for an awesome experience 🪟🚀</h3>
 
 <figure>
-  <img src= "images/screenshot.png" alt="awesome2k Demo">
+  <img src= "images/screenshot.jpg" alt="awesome2k Demo">
   <br/>
   <figcaption>awesome2k screenshot</figcaption>
 </figure>
