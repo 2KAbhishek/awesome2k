@@ -17,7 +17,7 @@ local function worker(user_args)
     local args = user_args or {}
 
     local font = args.font or 'Play 8'
-    local path_to_icons = args.path_to_icons or "/usr/share/icons/Arc/status/symbolic/"
+    local path_to_icons = args.path_to_icons or WIDGET_DIR .. "/icons/"
     local show_current_level = args.show_current_level or true
     local margin_left = args.margin_left or 0
     local margin_right = args.margin_right or 0
