@@ -217,8 +217,8 @@ awful.screen.connect_for_each_screen(function(screen)
             shape_border_color       = '#aaa',
             shape_border_color_focus = '#1688f0',
             shape                    = round_rect,
-            bg_focus                 = "#000",
-            fg_focus                 = "#1688f0",
+            bg_focus                 = "#1688f0",
+            fg_focus                 = "#000",
         },
         layout          = {
             spacing     = 8,
