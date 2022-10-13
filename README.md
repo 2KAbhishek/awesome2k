@@ -42,7 +42,22 @@ After using KDE for a long time with tiling support and struggling with config m
 
 Before you begin, ensure you have met the following requirements:
 
-- You have installed the latest version of `awesome`
+- `awesome` the window manager itself
+- `compton/picom` compositor, for transparency
+- `lxappearance` for gtk styling
+- `copyq` for clipboard management
+- `nitrogen` for wallpapers
+- `light` for display brightness
+- `amixer` for volume management
+- `autorandr` for multiple displays
+
+```bash
+# Arch
+sudo pacman -S awesome picom lxappearance copyq nitrogen light amixer autorandr
+
+# Debian
+sudo apt install awesome picom lxappearance copyq nitrogen light amixer autorandr
+```
 
 ## Setting up awesome2k
 
