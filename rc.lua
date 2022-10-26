@@ -409,7 +409,7 @@ local global_keys = gears.table.join(
         awful.util.spawn_with_shell("rofi -show combi -icon-theme 'Reversal' -show-icons")
     end),
     awful.key({ modkey }, "Tab", function()
-        awful.util.spawn_with_shell("rofi -show windowcd")
+        awful.util.spawn_with_shell("rofi -show windowcd -icon-theme 'Reversal' -show-icons")
     end),
     awful.key({ modkey }, ".", function()
         awful.util.spawn_with_shell("rofi -show emoji")
