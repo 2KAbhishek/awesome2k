@@ -402,8 +402,17 @@ local global_keys = gears.table.join(
         { description = "restore minimized", group = "client" }),
 
     -- Prompt
+    awful.key({ modkey }, "d", function()
+        awful.util.spawn_with_shell("dmenu_run -p '' -y 6 -h 12 -fn 'FiraCode Nerd Font-10' -nf '#ccc' -nb '#000' -sf '#fff' -sb '#1688f0'")
+    end),
     awful.key({ modkey }, "r", function()
-        awful.util.spawn_with_shell("dmenu_run -p '' -fn 'FiraCode Nerd Font-12' -nf '#888888' -nb '#222222' -sf '#ffffff' -sb '#1688f0'")
+        awful.util.spawn_with_shell("rofi -show combi -icon-theme 'Reversal' -show-icons")
+    end),
+    awful.key({ modkey }, "Tab", function()
+        awful.util.spawn_with_shell("rofi -show windowcd")
+    end),
+    awful.key({ modkey }, ".", function()
+        awful.util.spawn_with_shell("rofi -show emoji")
     end),
 
     -- awful.key({ modkey }, "r", function() awful.screen.focused().prompt_widget:run() end,
