@@ -1,5 +1,4 @@
--- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing.
+-- If LuaRocks is installed, load packages from there
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
@@ -13,8 +12,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 require("awful.autofocus")
 
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
+-- Check if awesome encountered an error during startup
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
         title = "Oops, there were errors during startup!",
@@ -35,7 +33,6 @@ do
         in_error = false
     end)
 end
--- }}}
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("~/.config/awesome/awesome2k.lua")
@@ -48,25 +45,26 @@ root.keys(keys.global_keys)
 local create_rules = require("rules").create
 awful.rules.rules = create_rules(keys.client_keys, keys.client_buttons)
 
--- Table of layouts to cover with awful.layout.inc, order matters.
+-- Enabled Layouts
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.top,
-    -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
-    awful.layout.suit.fair,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.corner.nw,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    -- awful.layout.suit.floating,
-    -- awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
 }
+-- Disabled Layouts
+-- awful.layout.suit.tile.top,
+-- awful.layout.suit.tile.left,
+-- awful.layout.suit.fair,
+-- awful.layout.suit.spiral,
+-- awful.layout.suit.max,
+-- awful.layout.suit.floating,
+-- awful.layout.suit.corner.ne,
+-- awful.layout.suit.corner.sw,
+-- awful.layout.suit.corner.se,
 
 -- Create widgets
 local clock_widget = wibox.widget {
