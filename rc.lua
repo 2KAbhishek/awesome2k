@@ -55,16 +55,6 @@ awful.layout.layouts = {
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
 }
--- Disabled Layouts
--- awful.layout.suit.tile.top,
--- awful.layout.suit.tile.left,
--- awful.layout.suit.fair,
--- awful.layout.suit.spiral,
--- awful.layout.suit.max,
--- awful.layout.suit.floating,
--- awful.layout.suit.corner.ne,
--- awful.layout.suit.corner.sw,
--- awful.layout.suit.corner.se,
 
 -- Create widgets
 local clock_widget = wibox.widget {
