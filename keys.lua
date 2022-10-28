@@ -12,7 +12,6 @@ require("awful.hotkeys_popup.keys")
 local modkey = "Mod4"
 -- local altkey = "Mod1"
 
--- define module table
 local keys = {}
 
 -- This is used later as the default terminal and editor to run.
@@ -355,6 +354,7 @@ keys.tasklist_buttons = gears.table.join(
     end),
     awful.button({}, 5, function()
         awful.client.focus.byidx(-1)
-    end))
+    end)
+)
 
 return keys
