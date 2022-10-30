@@ -155,7 +155,7 @@ keys.global_keys = gears.table.join(
         awful.util.spawn_with_shell("dmenu_run -p '' -y 6 -h 12 -fn 'FiraCode Nerd Font-10' -nf '#ccc' -nb '#000' -sf '#fff' -sb '#1688f0'")
     end),
     awful.key({ modkey }, "r", function()
-        awful.util.spawn_with_shell("rofi -show combi -icon-theme 'Reversal' -show-icons")
+        awful.util.spawn_with_shell("rofi -show drun -icon-theme 'Reversal' -show-icons")
     end),
     awful.key({ modkey }, "Tab", function()
         awful.util.spawn_with_shell("rofi -show windowcd -icon-theme 'Reversal' -show-icons")
