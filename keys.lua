@@ -94,6 +94,9 @@ keys.global_keys = gears.table.join(
         { description = "go back", group = "client" }),
 
     -- Standard program
+    awful.key({ modkey, }, "t", function() awful.spawn(terminal) end,
+        { description = "open a terminal", group = "launcher" }),
+
     awful.key({ modkey, }, "0", function() awful.spawn(terminal) end,
         { description = "open a terminal", group = "launcher" }),
 
@@ -230,7 +233,7 @@ keys.client_keys = gears.table.join(
         { description = "move to screen", group = "client" }),
     awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
         { description = "move to screen", group = "client" }),
-    awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
+    awful.key({ modkey, "Shift" }, "t", function(c) c.ontop = not c.ontop end,
         { description = "toggle keep on top", group = "client" }),
     awful.key({ modkey, }, "e",
         function(c)
