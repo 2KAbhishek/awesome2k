@@ -58,7 +58,7 @@ awful.layout.layouts = {
 
 -- Create widgets
 local clock_widget = wibox.widget {
-    format = '  %I:%M %p  %a %b %d',
+    format = '  %I:%M %p  %a, %b %d',
     widget = wibox.widget.textclock
 }
 
@@ -69,11 +69,11 @@ local icon_widget = wibox.widget {
     widget = wibox.widget.textbox
 }
 
-local volume_widget = require("widgets.volume.volume")
-local net_speed_widget = require("widgets.net-speed.net-speed")
-local battery_widget = require("widgets.battery.battery")
-local logout_menu_widget = require("widgets.logout-menu.logout-menu")
-local todo_widget = require("widgets.todo.todo")
+local volume_widget = require("widgets.volume")
+local net_speed_widget = require("widgets.net-speed")
+local battery_widget = require("widgets.battery")
+local logout_menu_widget = require("widgets.logout-menu")
+local todo_widget = require("widgets.todo")
 
 local round_rect = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 
