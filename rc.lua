@@ -12,6 +12,15 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 require("awful.autofocus")
 
+local volume_widget = require("widgets.volume")
+local net_speed_widget = require("widgets.net-speed")
+local battery_widget = require("widgets.battery")
+local logout_menu_widget = require("widgets.logout-menu")
+local todo_widget = require("widgets.todo")
+local cpu_widget = require("widgets.cpu")
+local ram_widget = require("widgets.ram")
+local fs_widget = require("widgets.fs")
+
 -- Check if awesome encountered an error during startup
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
@@ -68,12 +77,6 @@ local icon_widget = wibox.widget {
     valign = "center",
     widget = wibox.widget.textbox
 }
-
-local volume_widget = require("widgets.volume")
-local net_speed_widget = require("widgets.net-speed")
-local battery_widget = require("widgets.battery")
-local logout_menu_widget = require("widgets.logout-menu")
-local todo_widget = require("widgets.todo")
 
 local round_rect = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 
@@ -164,6 +167,9 @@ awful.screen.connect_for_each_screen(function(screen)
             layout = wibox.layout.fixed.horizontal,
             spacing = 6,
             clock_widget,
+            ram_widget(),
+            cpu_widget(),
+            fs_widget(),
             todo_widget(),
             volume_widget(),
             battery_widget(),
