@@ -185,14 +185,15 @@ keys.global_keys = gears.table.join(
         { description = "show the menubar", group = "launcher" }),
 
     awful.key({}, "Print",
-        function() awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null'", false) end,
+        function() awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false) end,
         { description = "take a screenshot", group = "client" }),
     awful.key({ modkey, "Control" }, "Print",
-        function() awful.util.spawn("scrot -u -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null'", false) end,
+        function() awful.util.spawn("scrot -ube 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false) end,
         { description = "take window screenshot", group = "client" }),
     awful.key({ modkey }, "Print",
-        function() awful.util.spawn("scrot -s -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null'", false) end,
-        { description = "take regional screenshot", group = "client" }),
+        function() awful.util.spawn("scrot -s -l width=3,color='#1688f0',mode=edge,opacity=90 -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'"
+                , false)
+        end, { description = "take regional screenshot", group = "client" }),
     -- Volume Keys
     awful.key({}, "XF86AudioLowerVolume", function()
         awful.util.spawn("amixer -q -D pulse sset Master 5%-", false)
