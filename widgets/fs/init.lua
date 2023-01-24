@@ -24,10 +24,10 @@ config.widget_border_color = '#535d6c66'
 config.widget_background_color = '#22222233'
 
 -- popup
-config.popup_bg = '#22222233'
+config.popup_bg = '#000000ee'
 config.popup_border_width = 1
-config.popup_border_color = '#535d6c66'
-config.popup_bar_color = '#aaaaaa'
+config.popup_border_color = '#1688f066'
+config.popup_bar_color = '#1688f0'
 config.popup_bar_background_color = '#22222233'
 config.popup_bar_border_color = '#535d6c66'
 
