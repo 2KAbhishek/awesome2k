@@ -247,6 +247,7 @@ awful.spawn.with_shell("autorandr -l default")
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("copyq")
+awful.spawn.with_shell("dropbox start")
 
 -- Run garbage collector regularly to prevent memory leaks
 gears.timer {
