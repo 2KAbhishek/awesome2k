@@ -17,17 +17,18 @@ config.mounts = { '/' }
 config.refresh_rate = 60
 
 -- wibar widget
-config.widget_width = 40
-config.widget_bar_color = '#aaaaaa'
-config.widget_onclick_bg = '#ff0000'
+config.widget_width = 30
+config.widget_height = 16
+config.widget_bar_color = beautiful.bg_focus
+config.widget_onclick_bg = beautiful.bg_focus
 config.widget_border_color = '#535d6c66'
 config.widget_background_color = '#22222233'
 
 -- popup
 config.popup_bg = '#000000ee'
 config.popup_border_width = 2
-config.popup_border_color = '#1688f066'
-config.popup_bar_color = '#1688f0'
+config.popup_border_color = beautiful.border_focus
+config.popup_bar_color = beautiful.border_focus
 config.popup_bar_background_color = '#22222233'
 config.popup_bar_border_color = '#535d6c66'
 
@@ -47,11 +48,11 @@ local function worker(user_args)
             id = 'progressbar',
             color = _config.widget_bar_color,
             max_value = 100,
-            forced_height = 20,
+            forced_height = _config.widget_height,
             forced_width = _config.widget_width,
             paddings = 2,
             margins = 4,
-            border_width = 1,
+            border_width = 2,
             border_radius = 2,
             border_color = _config.widget_border_color,
             background_color = _config.widget_background_color,

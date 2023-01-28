@@ -27,7 +27,7 @@ local popup = awful.popup {
     visible = false,
     shape = gears.shape.rounded_rect,
     border_width = 2,
-    border_color = "#1688f0",
+    border_color = beautiful.border_focus,
     maximum_width = 400,
     offset = { y = 5 },
     widget = {}
@@ -99,8 +99,7 @@ local function build_rows(devices, on_checkbox_click, device_type)
                             align = 'left',
                             widget = wibox.widget.textbox,
                             border_width = 1,
-                            border_color = "#1688f0",
-
+                            border_color = beautiful.border_focus,
                         },
                         left = 10,
                         layout = wibox.container.margin

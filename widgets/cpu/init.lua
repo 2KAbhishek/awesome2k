@@ -88,8 +88,8 @@ local function worker(user_args)
     local width = args.width or 50
     local step_width = args.step_width or 2
     local step_spacing = args.step_spacing or 1
-    local color = args.color or beautiful.fg_normal
-    local background_color = args.background_color or "#00000000"
+    local color = args.color or beautiful.bg_focus
+    local background_color = args.background_color or beautiful.bg_normal
     local enable_kill_button = args.enable_kill_button or false
     local process_info_max_length = args.process_info_max_length or -1
     local timeout = args.timeout or 1
@@ -117,7 +117,7 @@ local function worker(user_args)
         visible = false,
         shape = gears.shape.rounded_rect,
         border_width = 2,
-        border_color = "#1688f0",
+        border_color = beautiful.border_focus,
         maximum_width = 300,
         offset = { y = 5 },
         widget = {}

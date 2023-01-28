@@ -9,10 +9,10 @@ local ramgraph_widget = {}
 local function worker(user_args)
     local args            = user_args or {}
     local timeout         = args.timeout or 1
-    local color_used      = args.color_used or beautiful.bg_urgent
+    local color_used      = args.color_used or beautiful.bg_focus
     local color_free      = args.color_free or beautiful.fg_normal
-    local color_buf       = args.color_buf or beautiful.border_color_active
-    local widget_show_buf = args.widget_show_buf or false
+    local color_buf       = args.color_buf or beautiful.border_marked
+    local widget_show_buf = args.widget_show_buf or true
     local widget_height   = args.widget_height or 25
     local widget_width    = args.widget_width or 25
 
@@ -47,7 +47,7 @@ local function worker(user_args)
         shape = gears.shape.rounded_rect,
         border_width = 2,
         border_radius = 2,
-        border_color = "#1688f0",
+        border_color = beautiful.border_focus,
         offset = { y = 5 },
     }
 
