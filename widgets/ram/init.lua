@@ -11,7 +11,7 @@ local function worker(user_args)
     local timeout         = args.timeout or 1
     local color_used      = args.color_used or beautiful.bg_focus
     local color_free      = args.color_free or beautiful.fg_normal
-    local color_buf       = args.color_buf or beautiful.border_marked
+    local color_buf       = args.color_buf or beautiful.fg_minimize
     local widget_show_buf = args.widget_show_buf or true
     local widget_height   = args.widget_height or 25
     local widget_width    = args.widget_width or 25
