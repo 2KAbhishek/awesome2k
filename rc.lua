@@ -12,41 +12,10 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 require("awful.autofocus")
 
-local audio_widget = require("widgets.audio")
-local network_widget = require("widgets.network")
-local battery_widget = require("widgets.battery")
-local logout_widget = require("widgets.logout")
-local todo_widget = require("widgets.todo")
-local cpu_widget = require("widgets.cpu")
-local ram_widget = require("widgets.ram")
-local disk_widget = require("widgets.disk")
-local systray_widget = wibox.widget.systray()
-systray_widget.set_base_size(18)
-
--- Check if awesome encountered an error during startup
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-        title = "Oops, there were errors during startup!",
-        text = awesome.startup_errors })
-end
-
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function(err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
-
-        naughty.notify({ preset = naughty.config.presets.critical,
-            title = "Oops, an error happened!",
-            text = tostring(err) })
-        in_error = false
-    end)
-end
-
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/awesome2k.lua")
+local HOME = os.getenv("HOME")
+beautiful.init(HOME .. "/.config/awesome/awesome2k.lua")
+local round_rect = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 
 -- Set keys
 local keys = require("keys")
@@ -55,6 +24,19 @@ root.keys(keys.global_keys)
 -- Set rules
 local create_rules = require("rules").create
 awful.rules.rules = create_rules(keys.client_keys, keys.client_buttons)
+
+-- Widgets
+local audio_widget = require("widgets.audio")
+local network_widget = require("widgets.network")
+local battery_widget = require("widgets.battery")
+local logout_widget = require("widgets.logout")
+local todo_widget = require("widgets.todo")
+local cpu_widget = require("widgets.cpu")
+local ram_widget = require("widgets.ram")
+local disk_widget = require("widgets.disk")
+local time_widget = require("widgets.time")
+local systray_widget = wibox.widget.systray()
+systray_widget.set_base_size(18)
 
 -- Enabled Layouts
 awful.layout.layouts = {
@@ -66,14 +48,6 @@ awful.layout.layouts = {
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
 }
-
--- Create widgets
-local clock_widget = wibox.widget {
-    format = '  %I:%M %p  %a, %b %d',
-    widget = wibox.widget.textclock
-}
-
-local round_rect = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 
 awful.screen.connect_for_each_screen(function(screen)
     -- Each screen has its own tag table.
@@ -103,11 +77,11 @@ awful.screen.connect_for_each_screen(function(screen)
         buttons         = keys.tasklist_buttons,
         style           = {
             shape_border_width       = 1,
-            shape_border_color       = '#aaa',
-            shape_border_color_focus = '#1688f0',
+            shape_border_color       = beautiful.fg_minimize,
+            shape_border_color_focus = beautiful.border_focus,
             shape                    = round_rect,
-            bg_focus                 = "#1688f0",
-            fg_focus                 = "#000",
+            bg_focus                 = beautiful.bg_focus,
+            fg_focus                 = beautiful.fg_focus,
         },
         layout          = {
             spacing     = 8,
@@ -161,7 +135,7 @@ awful.screen.connect_for_each_screen(function(screen)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = 6,
-            clock_widget,
+            time_widget,
             todo_widget(),
             audio_widget(),
             battery_widget(),
@@ -242,6 +216,29 @@ awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("copyq")
 awful.spawn.with_shell("dropbox start")
+
+-- Check if awesome encountered an error during startup
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+        title = "Oops, there were errors during startup!",
+        text = awesome.startup_errors })
+end
+
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.connect_signal("debug::error", function(err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+            title = "Oops, an error happened!",
+            text = tostring(err) })
+        in_error = false
+    end)
+end
+
 
 -- Run garbage collector regularly to prevent memory leaks
 gears.timer {
