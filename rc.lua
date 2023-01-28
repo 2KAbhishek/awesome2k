@@ -20,6 +20,8 @@ local todo_widget = require("widgets.todo")
 local cpu_widget = require("widgets.cpu")
 local ram_widget = require("widgets.ram")
 local disk_widget = require("widgets.disk")
+local systray_widget = wibox.widget.systray()
+systray_widget.set_base_size(18)
 
 -- Check if awesome encountered an error during startup
 if awesome.startup_errors then
@@ -168,7 +170,7 @@ awful.screen.connect_for_each_screen(function(screen)
             network_widget(),
             cpu_widget(),
             screen.layout_widget,
-            wibox.widget.systray(),
+            systray_widget,
             logout_widget(),
         },
     }
