@@ -7,7 +7,7 @@ local watch = require("awful.widget.watch")
 local utils = require("widgets.audio.utils")
 
 
-local LIST_DEVICES_CMD = [[sh -c "pacmd list-sinks; pacmd list-sources"]]
+local LIST_DEVICES_CMD = [[sh -c "pactl list short sinks | cut -f 2; pactl list short sources | cut -f 2"]]
 local function GET_VOLUME_CMD(device) return 'amixer -D ' .. device .. ' sget Master' end
 
 local function INC_VOLUME_CMD(device, step) return 'amixer -D ' .. device .. ' sset Master ' .. step .. '%+' end
@@ -28,25 +28,32 @@ local popup = awful.popup {
     ontop = true,
     visible = false,
     shape = gears.shape.rounded_rect,
-    border_width = 1,
-    border_color = beautiful.bg_focus,
+    border_width = 2,
+    border_color = "#1688f0",
     maximum_width = 400,
     offset = { y = 5 },
     widget = {}
 }
 
-local function build_main_line(device)
-    if device.active_port ~= nil and device.ports[device.active_port] ~= nil then
-        return device.properties.device_description .. ' · ' .. device.ports[device.active_port]
-    else
-        return device.properties.device_description
+local function split(string_to_split, separator)
+    if separator == nil then separator = "%s" end
+    local t = {}
+
+    for str in string.gmatch(string_to_split, "([^" .. separator .. "]+)") do
+        table.insert(t, str)
     end
+
+    return t
+end
+
+local function build_main_line(device)
+    local dev = split(device, ".")
+    return dev[2]
 end
 
 local function build_rows(devices, on_checkbox_click, device_type)
     local device_rows = { layout = wibox.layout.fixed.vertical }
     for _, device in pairs(devices) do
-
         local checkbox = wibox.widget {
             checked = device.is_default,
             color = beautiful.bg_normal,
@@ -59,7 +66,7 @@ local function build_rows(devices, on_checkbox_click, device_type)
         }
 
         checkbox:connect_signal("button::press", function()
-            spawn.easy_async(string.format([[sh -c 'pacmd set-default-%s "%s"']], device_type, device.name), function()
+            spawn.easy_async(string.format([[sh -c 'pacmd set-default-%s "%s"']], device_type, device), function()
                 on_checkbox_click()
             end)
         end)
@@ -76,7 +83,10 @@ local function build_rows(devices, on_checkbox_click, device_type)
                         {
                             text = build_main_line(device),
                             align = 'left',
-                            widget = wibox.widget.textbox
+                            widget = wibox.widget.textbox,
+                            border_width = 1,
+                            border_color = "#1688f0",
+
                         },
                         left = 10,
                         layout = wibox.container.margin
@@ -85,7 +95,8 @@ local function build_rows(devices, on_checkbox_click, device_type)
                     layout = wibox.layout.align.horizontal
                 },
                 margins = 4,
-                layout = wibox.container.margin
+                layout = wibox.container.margin,
+
             },
             bg = beautiful.bg_normal,
             widget = wibox.container.background
@@ -108,7 +119,7 @@ local function build_rows(devices, on_checkbox_click, device_type)
         end)
 
         row:connect_signal("button::press", function()
-            spawn.easy_async(string.format([[sh -c 'pacmd set-default-%s "%s"']], device_type, device.name), function()
+            spawn.easy_async(string.format([[sh -c 'pactl set-default-%s "%s"']], device_type, device), function()
                 on_checkbox_click()
             end)
         end)
@@ -138,9 +149,9 @@ local function rebuild_popup()
 
         for i = 0, #rows do rows[i] = nil end
 
-        table.insert(rows, build_header_row("SINKS"))
+        table.insert(rows, build_header_row("Output"))
         table.insert(rows, build_rows(sinks, function() rebuild_popup() end, "sink"))
-        table.insert(rows, build_header_row("SOURCES"))
+        table.insert(rows, build_header_row("Input"))
         table.insert(rows, build_rows(sources, function() rebuild_popup() end, "source"))
 
         popup:setup(rows)
