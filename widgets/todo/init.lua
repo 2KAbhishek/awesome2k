@@ -8,9 +8,9 @@ local gfs = require("gears.filesystem")
 
 local HOME_DIR = os.getenv("HOME")
 local WIDGET_DIR = HOME_DIR .. '/.config/awesome/widgets/todo'
-local STORAGE = HOME_DIR .. '/.cache/awesome/awesome-todos.json'
+local STORAGE = os.getenv("NOTES_ROOT") .. '/notes/awesome-todos.json'
 
-local GET_TODO_ITEMS = 'bash -c "cat ' .. STORAGE .. '"'
+local GET_TODO_ITEMS = 'sh -c "cat ' .. STORAGE .. '"'
 
 local rows         = { layout = wibox.layout.fixed.vertical }
 local todo_widget  = {}
@@ -63,8 +63,8 @@ local popup = awful.popup {
     ontop = true,
     visible = false,
     shape = gears.shape.rounded_rect,
-    border_width = 1,
-    border_color = beautiful.bg_focus,
+    border_width = 2,
+    border_color = '#1688f0',
     maximum_width = 400,
     offset = { y = 5 },
     widget = {}
@@ -103,7 +103,7 @@ add_button:connect_signal("button::press", function()
         widget = wibox.container.background
     })
     awful.prompt.run {
-        prompt = "<b>New item</b>: ",
+        prompt = "<b>New Todo</b>: ",
         bg = beautiful.bg_normal,
         bg_cursor = beautiful.fg_urgent,
         textbox = pr.widget,
@@ -142,7 +142,7 @@ local function worker(user_args)
             {
                 { widget = wibox.widget.textbox },
                 {
-                    markup = '<span size="large" font_weight="bold" color="#ffffff">ToDo</span>',
+                    markup = '<span size="large" font_weight="bold" color="#ffffff">To-Do</span>',
                     align = 'center',
                     forced_width = 350, -- for horizontal alignment
                     forced_height = 40,
