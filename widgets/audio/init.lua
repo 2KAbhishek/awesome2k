@@ -17,7 +17,7 @@ local function DEC_VOLUME_CMD(device, step) return 'amixer -D ' .. device .. ' s
 local function TOG_VOLUME_CMD(device) return 'amixer -D ' .. device .. ' sset Master toggle' end
 
 local widget_types = {
-    icon_and_text = require("widgets.audio.widgets.icon-and-text"),
+    icon_and_text = require("widgets.audio.icon-and-text"),
 }
 local volume = {}
 
