@@ -71,13 +71,6 @@ local clock_widget = wibox.widget {
     widget = wibox.widget.textclock
 }
 
-local icon_widget = wibox.widget {
-    markup = "  ",
-    align = "center",
-    valign = "center",
-    widget = wibox.widget.textbox
-}
-
 local round_rect = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 
 awful.screen.connect_for_each_screen(function(screen)
