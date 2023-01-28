@@ -77,7 +77,7 @@ local round_rect = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 10) end
 
 awful.screen.connect_for_each_screen(function(screen)
     -- Each screen has its own tag table.
-    awful.tag({ " ", " ", " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
+    awful.tag({ " ", " ", " ", " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     screen.prompt_widget = awful.widget.prompt()
@@ -153,7 +153,7 @@ awful.screen.connect_for_each_screen(function(screen)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = 6,
-            icon_widget,
+            screen.layout_widget,
             screen.taglist_widget,
             screen.prompt_widget,
         },
@@ -169,7 +169,6 @@ awful.screen.connect_for_each_screen(function(screen)
             disk_widget(),
             network_widget(),
             cpu_widget(),
-            screen.layout_widget,
             systray_widget,
             logout_widget(),
         },
