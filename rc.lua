@@ -35,8 +35,8 @@ local cpu_widget = require("widgets.cpu")
 local ram_widget = require("widgets.ram")
 local disk_widget = require("widgets.disk")
 local time_widget = require("widgets.time")
-local sep_widget = require("widgets.text")
-sep_widget.markup = "  "
+local separator = require("widgets.text")
+separator.markup = "  "
 local systray_widget = wibox.widget.systray()
 systray_widget.set_base_size(15)
 
@@ -146,7 +146,7 @@ awful.screen.connect_for_each_screen(function(screen)
             cpu_widget(),
             network_widget(),
             systray_widget,
-            icon_widget,
+            separator,
             logout_widget(),
         },
     }
