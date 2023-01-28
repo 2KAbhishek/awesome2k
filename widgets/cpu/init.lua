@@ -116,8 +116,8 @@ local function worker(user_args)
         ontop = true,
         visible = false,
         shape = gears.shape.rounded_rect,
-        border_width = 1,
-        border_color = beautiful.bg_normal,
+        border_width = 2,
+        border_color = "#1688f0",
         maximum_width = 300,
         offset = { y = 5 },
         widget = {}
