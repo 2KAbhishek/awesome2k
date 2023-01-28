@@ -4,8 +4,6 @@ local spawn = require("awful.spawn")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local watch = require("awful.widget.watch")
-local utils = require("widgets.audio.utils")
-
 
 local LIST_DEVICES_CMD = [[sh -c "pactl list short sinks | cut -f 2; pactl list short sources | cut -f 2"]]
 local function GET_VOLUME_CMD(device) return 'amixer -D ' .. device .. ' sget Master' end
@@ -34,6 +32,22 @@ local popup = awful.popup {
     offset = { y = 5 },
     widget = {}
 }
+
+local function extract_devices(cmd_output)
+    local sinks = {}
+    local sources = {}
+
+    for line in cmd_output:gmatch("[^\r\n]+") do
+        if string.find(line, 'output') ~= nil then
+            table.insert(sinks, line)
+        end
+        if string.match(line, 'input') ~= nil then
+            table.insert(sources, line)
+        end
+    end
+
+    return sinks, sources
+end
 
 local function split(string_to_split, separator)
     if separator == nil then separator = "%s" end
@@ -145,7 +159,7 @@ end
 local function rebuild_popup()
     spawn.easy_async(LIST_DEVICES_CMD, function(stdout)
 
-        local sinks, sources = utils.extract_sinks_and_sources(stdout)
+        local sinks, sources = extract_devices(stdout)
 
         for i = 0, #rows do rows[i] = nil end
 
