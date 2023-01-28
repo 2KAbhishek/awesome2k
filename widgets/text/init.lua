@@ -1,7 +1,7 @@
 local wibox = require("wibox")
 
 local icon_widget = wibox.widget {
-    markup = " ",
+    markup = "  ",
     align = "center",
     valign = "center",
     widget = wibox.widget.textbox
