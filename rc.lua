@@ -12,14 +12,14 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 require("awful.autofocus")
 
-local volume_widget = require("widgets.volume")
-local net_speed_widget = require("widgets.net-speed")
+local audio_widget = require("widgets.audio")
+local network_widget = require("widgets.network")
 local battery_widget = require("widgets.battery")
-local logout_menu_widget = require("widgets.logout-menu")
+local logout_widget = require("widgets.logout")
 local todo_widget = require("widgets.todo")
 local cpu_widget = require("widgets.cpu")
 local ram_widget = require("widgets.ram")
-local fs_widget = require("widgets.fs")
+local disk_widget = require("widgets.disk")
 
 -- Check if awesome encountered an error during startup
 if awesome.startup_errors then
@@ -168,15 +168,15 @@ awful.screen.connect_for_each_screen(function(screen)
             spacing = 6,
             clock_widget,
             todo_widget(),
-            volume_widget(),
+            audio_widget(),
             battery_widget(),
             ram_widget(),
-            fs_widget(),
-            net_speed_widget(),
+            disk_widget(),
+            network_widget(),
             cpu_widget(),
             screen.layout_widget,
             wibox.widget.systray(),
-            logout_menu_widget(),
+            logout_widget(),
         },
     }
 end)
