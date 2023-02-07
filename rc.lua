@@ -43,9 +43,11 @@ systray_widget.set_base_size(15)
 -- Enabled Layouts
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.se,
+    awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
