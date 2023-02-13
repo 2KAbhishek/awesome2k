@@ -55,7 +55,7 @@ awful.layout.layouts = {
 
 awful.screen.connect_for_each_screen(function(screen)
     -- Each screen has its own tag table.
-    awful.tag({ " ", " ", " ", " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
+    awful.tag({ " ", " ", " ", " ", " ", " ", " ", " " }, screen, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     screen.prompt_widget = awful.widget.prompt()
