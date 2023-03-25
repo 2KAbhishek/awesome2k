@@ -1,10 +1,10 @@
-local wibox = require("wibox")
+local wibox = require('wibox')
 
-local icon_widget = wibox.widget {
-    markup = "  ",
-    align = "center",
-    valign = "center",
-    widget = wibox.widget.textbox
-}
+local icon_widget = wibox.widget({
+    markup = '  ',
+    align = 'center',
+    valign = 'center',
+    widget = wibox.widget.textbox,
+})
 
 return icon_widget

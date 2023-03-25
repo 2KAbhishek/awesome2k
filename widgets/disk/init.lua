@@ -1,8 +1,8 @@
-local awful = require("awful")
-local watch = require("awful.widget.watch")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
-local gears = require("gears")
+local awful = require('awful')
+local watch = require('awful.widget.watch')
+local wibox = require('wibox')
+local beautiful = require('beautiful')
+local gears = require('gears')
 
 local storage_bar_widget = {}
 
@@ -43,7 +43,7 @@ local function worker(user_args)
         _config[prop] = args[prop] or beautiful[prop] or value
     end
 
-    storage_bar_widget = wibox.widget {
+    storage_bar_widget = wibox.widget({
         {
             id = 'progressbar',
             color = _config.widget_bar_color,
@@ -56,16 +56,16 @@ local function worker(user_args)
             border_radius = 2,
             border_color = _config.widget_border_color,
             background_color = _config.widget_background_color,
-            widget = wibox.widget.progressbar
+            widget = wibox.widget.progressbar,
         },
         shape = function(cr, width, height)
             gears.shape.rounded_rect(cr, width, height, 4)
         end,
         widget = wibox.container.background,
         set_value = function(self, new_value)
-            self:get_children_by_id("progressbar")[1].value = new_value
-        end
-    }
+            self:get_children_by_id('progressbar')[1].value = new_value
+        end,
+    })
 
     local disk_rows = {
         { widget = wibox.widget.textbox },
@@ -73,7 +73,7 @@ local function worker(user_args)
         layout = wibox.layout.fixed.vertical,
     }
 
-    local disk_header = wibox.widget {
+    local disk_header = wibox.widget({
         {
             markup = '<b>Mount</b>',
             forced_width = 150,
@@ -85,11 +85,11 @@ local function worker(user_args)
             align = 'left',
             widget = wibox.widget.textbox,
         },
-        layout = wibox.layout.ratio.horizontal
-    }
+        layout = wibox.layout.ratio.horizontal,
+    })
     disk_header:ajust_ratio(1, 0, 0.3, 0.7)
 
-    local popup = awful.popup {
+    local popup = awful.popup({
         bg = _config.popup_bg,
         ontop = true,
         visible = false,
@@ -98,50 +98,45 @@ local function worker(user_args)
         border_color = _config.popup_border_color,
         maximum_width = 400,
         offset = { y = 5 },
-        widget = {}
-    }
+        widget = {},
+    })
 
-    storage_bar_widget:buttons(
-        awful.util.table.join(
-            awful.button({}, 1, function()
-                if popup.visible then
-                    popup.visible = not popup.visible
-                    storage_bar_widget:set_bg('#f0000000')
-                else
-                    storage_bar_widget:set_bg(_config.widget_background_color)
-                    popup:move_next_to(mouse.current_widget_geometry)
-                end
-            end)
-        )
-    )
+    storage_bar_widget:buttons(awful.util.table.join(awful.button({}, 1, function()
+        if popup.visible then
+            popup.visible = not popup.visible
+            storage_bar_widget:set_bg('#f0000000')
+        else
+            storage_bar_widget:set_bg(_config.widget_background_color)
+            popup:move_next_to(mouse.current_widget_geometry)
+        end
+    end)))
 
     local disks = {}
-    watch([[bash -c "df | tail -n +2"]], _config.refresh_rate,
-        function(widget, stdout)
-            for line in stdout:gmatch("[^\r\n$]+") do
-                local filesystem, size, used, avail, perc, mount =
+    watch([[bash -c "df | tail -n +2"]], _config.refresh_rate, function(widget, stdout)
+        for line in stdout:gmatch('[^\r\n$]+') do
+            local filesystem, size, used, avail, perc, mount =
                 line:match('([%p%w]+)%s+([%d%w]+)%s+([%d%w]+)%s+([%d%w]+)%s+([%d]+)%%%s+([%p%w]+)')
 
-                disks[mount] = {}
-                disks[mount].filesystem = filesystem
-                disks[mount].size = size
-                disks[mount].used = used
-                disks[mount].avail = avail
-                disks[mount].perc = perc
-                disks[mount].mount = mount
+            disks[mount] = {}
+            disks[mount].filesystem = filesystem
+            disks[mount].size = size
+            disks[mount].used = used
+            disks[mount].avail = avail
+            disks[mount].perc = perc
+            disks[mount].mount = mount
 
-                if disks[mount].mount == _config.mounts[1] then
-                    widget:set_value(tonumber(disks[mount].perc))
-                end
+            if disks[mount].mount == _config.mounts[1] then
+                widget:set_value(tonumber(disks[mount].perc))
             end
+        end
 
-            for k, v in ipairs(_config.mounts) do
-
-                local row = wibox.widget {
+        for k, v in ipairs(_config.mounts) do
+            local row =
+                wibox.widget({
                     {
                         text = disks[v].mount,
                         forced_width = 150,
-                        widget = wibox.widget.textbox
+                        widget = wibox.widget.textbox,
                     },
                     {
                         color = _config.popup_bar_color,
@@ -158,34 +153,33 @@ local function worker(user_args)
                         widget = wibox.widget.progressbar,
                     },
                     {
-                        text = math.floor(disks[v].used / 1024 / 1024)
-                            .. '/'
-                            .. math.floor(disks[v].size / 1024 / 1024) .. 'GB('
-                            .. math.floor(disks[v].perc) .. '%)',
-                        widget = wibox.widget.textbox
+                        text = math.floor(disks[v].used / 1024 / 1024) .. '/' .. math.floor(
+                            disks[v].size / 1024 / 1024
+                        ) .. 'GB(' .. math.floor(disks[v].perc) .. '%)',
+                        widget = wibox.widget.textbox,
                     },
-                    layout = wibox.layout.ratio.horizontal
-                }
-                row:ajust_ratio(2, 0.3, 0.3, 0.4)
+                    layout = wibox.layout.ratio.horizontal,
+                })
+            row:ajust_ratio(2, 0.3, 0.3, 0.4)
 
-                disk_rows[k] = row
-            end
-            popup:setup {
-                {
-                    disk_header,
-                    disk_rows,
-                    layout = wibox.layout.fixed.vertical,
-                },
-                margins = 8,
-                widget = wibox.container.margin
-            }
-        end,
-        storage_bar_widget
-    )
+            disk_rows[k] = row
+        end
+        popup:setup({
+            {
+                disk_header,
+                disk_rows,
+                layout = wibox.layout.fixed.vertical,
+            },
+            margins = 8,
+            widget = wibox.container.margin,
+        })
+    end, storage_bar_widget)
 
     return storage_bar_widget
 end
 
-return setmetatable(storage_bar_widget, { __call = function(_, ...)
-    return worker(...)
-end })
+return setmetatable(storage_bar_widget, {
+    __call = function(_, ...)
+        return worker(...)
+    end,
+})

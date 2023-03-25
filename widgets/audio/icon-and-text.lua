@@ -1,9 +1,9 @@
-local wibox = require("wibox")
+local wibox = require('wibox')
 local beautiful = require('beautiful')
 
 local widget = {}
 
-local ICON_DIR = os.getenv("HOME") .. '/.config/awesome/widgets/audio/icons/'
+local ICON_DIR = os.getenv('HOME') .. '/.config/awesome/widgets/audio/icons/'
 
 function widget.get_widget(widgets_args)
     local args = widgets_args or {}
@@ -11,20 +11,20 @@ function widget.get_widget(widgets_args)
     local font = args.font or beautiful.font
     local icon_dir = args.icon_dir or ICON_DIR
 
-    return wibox.widget {
+    return wibox.widget({
         {
             {
-                id = "icon",
+                id = 'icon',
                 resize = false,
                 widget = wibox.widget.imagebox,
             },
             valign = 'center',
-            layout = wibox.container.place
+            layout = wibox.container.place,
         },
         {
             id = 'txt',
             font = font,
-            widget = wibox.widget.textbox
+            widget = wibox.widget.textbox,
         },
         layout = wibox.layout.fixed.horizontal,
         set_volume_level = function(self, new_value)
@@ -34,12 +34,12 @@ function widget.get_widget(widgets_args)
                 volume_icon_name = 'audio-volume-muted-symbolic'
             else
                 local new_value_num = tonumber(new_value)
-                if (new_value_num >= 0 and new_value_num < 33) then
-                    volume_icon_name = "audio-volume-low-symbolic"
-                elseif (new_value_num < 66) then
-                    volume_icon_name = "audio-volume-medium-symbolic"
+                if new_value_num >= 0 and new_value_num < 33 then
+                    volume_icon_name = 'audio-volume-low-symbolic'
+                elseif new_value_num < 66 then
+                    volume_icon_name = 'audio-volume-medium-symbolic'
                 else
-                    volume_icon_name = "audio-volume-high-symbolic"
+                    volume_icon_name = 'audio-volume-high-symbolic'
                 end
             end
             self:get_children_by_id('icon')[1]:set_image(icon_dir .. volume_icon_name .. '.svg')
@@ -50,10 +50,8 @@ function widget.get_widget(widgets_args)
         end,
         unmute = function(self)
             self.is_muted = false
-        end
-    }
-
+        end,
+    })
 end
 
 return widget
-
