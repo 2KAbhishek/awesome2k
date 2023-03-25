@@ -148,6 +148,7 @@ awful.screen.connect_for_each_screen(function(screen)
             screen.layout_widget,
             screen.taglist_widget,
             screen.prompt_widget,
+            separator,
         },
         screen.tasklist_widget, -- Middle widget
         { -- Right widgets
