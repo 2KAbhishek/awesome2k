@@ -10,7 +10,7 @@ local gfs = require('gears.filesystem')
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
-local accent = '#0d73cc'
+local accent = '#1688f0'
 
 theme.font = 'FiraCode Nerd Font 9'
 
