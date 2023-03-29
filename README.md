@@ -20,7 +20,7 @@
 <a href="https://github.com/2KAbhishek/awesome2k/pulse">
 <img alt="Last Updated" src="https://img.shields.io/github/last-commit/2kabhishek/awesome2k?style=flat&color=e06c75&label="> </a>
 
-<h3>Awesomely Productive Window Management 🪟🚀</h3>
+<h3>Awesome Window Management 🪟🚀</h3>
 
 <figure>
   <img src= "images/screenshot.jpg" alt="awesome2k Demo">
