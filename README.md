@@ -55,7 +55,6 @@ Before you begin, ensure you have met the following requirements:
 
 - `awesome` the window manager itself
 - `rofi` with [rofi2k](https://github.com/2kabhishek/rofi2k) my preferred launcher
-    - [rofi-emoji](https://github.com/Mange/rofi-emoji) needed for rofi emoji panel
 - `compton/picom` compositor, for transparency
 - `lxappearance` for gtk styling
 - `copyq` for clipboard management
