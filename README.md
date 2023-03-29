@@ -63,6 +63,7 @@ Before you begin, ensure you have met the following requirements:
 - `light` for display brightness
 - `amixer` for volume management
 - `autorandr` for multiple displays
+- `i3lock/i3lock-fancy` for lockscreen in session widget
 
 ```bash
 # Arch

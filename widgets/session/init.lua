@@ -4,9 +4,9 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 
 local HOME = os.getenv('HOME')
-local ICON_DIR = HOME .. '/.config/awesome/widgets/logout/icons/'
+local ICON_DIR = HOME .. '/.config/awesome/widgets/session/icons/'
 
-local logout_menu_widget = wibox.widget({
+local session_widget = wibox.widget({
     {
         {
             image = ICON_DIR .. 'power_w.svg',
@@ -119,17 +119,17 @@ local function worker(user_args)
     end
     popup:setup(rows)
 
-    logout_menu_widget:buttons(awful.util.table.join(awful.button({}, 1, function()
+    session_widget:buttons(awful.util.table.join(awful.button({}, 1, function()
         if popup.visible then
             popup.visible = not popup.visible
-            logout_menu_widget:set_bg('#00000000')
+            session_widget:set_bg('#00000000')
         else
             popup:move_next_to(mouse.current_widget_geometry)
-            logout_menu_widget:set_bg(beautiful.bg_focus)
+            session_widget:set_bg(beautiful.bg_focus)
         end
     end)))
 
-    return logout_menu_widget
+    return session_widget
 end
 
 return worker

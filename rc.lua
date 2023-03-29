@@ -31,7 +31,7 @@ awful.rules.rules = create_rules(keys.client_keys, keys.client_buttons)
 local audio_widget = require('widgets.audio')
 local network_widget = require('widgets.network')
 local battery_widget = require('widgets.battery')
-local logout_widget = require('widgets.logout')
+local session_widget = require('widgets.session')
 local todo_widget = require('widgets.todo')
 local cpu_widget = require('widgets.cpu')
 local ram_widget = require('widgets.ram')
@@ -166,7 +166,7 @@ awful.screen.connect_for_each_screen(function(screen)
             separator,
             systray_widget,
             separator,
-            logout_widget(),
+            session_widget(),
         },
     })
 end)

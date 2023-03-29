@@ -1,8 +1,6 @@
-# Logout Menu Widget
+# Session Widget
 
 This widget shows a menu with options to log out from the current session, lock, reboot, suspend and power off the computer, similar to [logout-popup-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-popup-widget):
-
-![demo](./logout-menu.gif)
 
 ## Installation
 
@@ -15,16 +13,16 @@ git clone https://github.com/streetturtle/awesome-wm-widgets
 Then add the widget to the wibar:
 
 ```lua
-local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local session_widget = require('widgets.session')
 
 s.mytasklist, -- Middle widget
     { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
         ...
         -- default
-        logout_menu_widget(),
+        session_widget(),
         -- custom
-        logout_menu_widget{
+        session_widget{
             font = 'Play 14',
             onlock = function() awful.spawn.with_shell('i3lock-fancy') end
         }
