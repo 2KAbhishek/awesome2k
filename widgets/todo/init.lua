@@ -8,7 +8,8 @@ local gfs = require('gears.filesystem')
 
 local HOME_DIR = os.getenv('HOME')
 local WIDGET_DIR = HOME_DIR .. '/.config/awesome/widgets/todo'
-local STORAGE = os.getenv('NOTES_ROOT') .. '/notes/awesome-todos.json'
+local NOTES_ROOT = os.getenv('NOTES_ROOT') or HOME_DIR
+local STORAGE = NOTES_ROOT .. '/notes/awesome-todos.json'
 
 local GET_TODO_ITEMS = 'sh -c "cat ' .. STORAGE .. '"'
 
