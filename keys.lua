@@ -166,7 +166,7 @@ keys.global_keys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey }, 'd', function()
-        awful.util.spawn_with_shell('rofi -show filebrowser')
+        awful.util.spawn_with_shell("dmenu_run -p '' -y 6 -h 12 -fn 'FiraCode Nerd Font-10' -nf '#ccc' -nb '#000' -sf '#fff' -sb '#1688f0'")
     end),
     awful.key({ modkey }, 'a', function()
         awful.util.spawn_with_shell('rofi -show drun')
