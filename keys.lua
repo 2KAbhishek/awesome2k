@@ -3,6 +3,7 @@ local gears = require('gears')
 local beautiful = require('beautiful')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local menubar = require('menubar')
+local app_menu = require('widgets.app-menu')
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -27,24 +28,33 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a launcher widget and a main menu
 local awesome_menu = {
     {
-        'hotkeys',
+        'Hotkeys',
         function()
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end,
     },
-    { 'manual', terminal .. ' -e man awesome' },
-    { 'edit config', editor_cmd .. ' ' .. awesome.conffile },
-    { 'restart', awesome.restart },
+    { 'Manual', terminal .. ' -e man awesome' },
+    { 'Config', editor_cmd .. ' ' .. awesome.conffile },
+    { 'Restart', awesome.restart },
     {
-        'quit',
+        'Quit',
         function()
             awesome.quit()
         end,
     },
 }
 
-local main_menu =
-    awful.menu({ items = { { 'awesome', awesome_menu, beautiful.awesome_icon }, { 'open terminal', terminal } } })
+local main_menu = app_menu.build({
+    before = {
+        { 'Awesome', awesome_menu, beautiful.awesome_icon },
+        -- other triads can be put here
+    },
+    after = {
+        { 'Terminal', terminal },
+        -- other triads can be put here
+    },
+    -- sub_menu = 'Apps',
+})
 
 -- Mouse keys
 root.buttons(gears.table.join(
@@ -166,11 +176,13 @@ keys.global_keys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey }, 'd', function()
-        awful.util.spawn_with_shell("dmenu_run -p '' -y 6 -h 12 -fn 'FiraCode Nerd Font-10' -nf '#ccc' -nb '#000' -sf '#fff' -sb '#1688f0'")
+        awful.util.spawn_with_shell(
+            "dmenu_run -p '' -y 6 -h 12 -fn 'FiraCode Nerd Font-10' -nf '#ccc' -nb '#000' -sf '#fff' -sb '#1688f0'"
+        )
     end),
-    awful.key({ modkey }, ' ', function()
-        awful.util.spawn_with_shell('rofi -show drun')
-    end),
+    -- awful.key({ modkey }, ' ', function()
+    --     awful.util.spawn_with_shell('rofi -show drun')
+    -- end),
     awful.key({ modkey }, 'a', function()
         awful.util.spawn_with_shell('rofi -show drun')
     end),
