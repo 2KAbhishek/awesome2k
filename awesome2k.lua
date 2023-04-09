@@ -33,6 +33,7 @@ theme.border_marked = '#16f088'
 
 theme.systray_icon_spacing = 6
 theme.hotkeys_modifiers_fg = '#888'
+theme.icon_theme = 'Reversal-blue-dark'
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
@@ -40,8 +41,8 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 
 theme.menu_submenu_icon = themes_path .. 'default/submenu.png'
-theme.menu_height = dpi(15)
-theme.menu_width = dpi(100)
+theme.menu_height = dpi(20)
+theme.menu_width = dpi(140)
 
 -- Define the image to load
 theme.titlebar_close_button_normal = themes_path .. 'default/titlebar/close_normal.png'
