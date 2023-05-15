@@ -159,10 +159,10 @@ keys.global_keys = gears.table.join(
     awful.key({ modkey, 'Control' }, 'l', function()
         awful.tag.incncol(-1, nil, true)
     end, { description = 'decrease the number of columns', group = 'layout' }),
-    awful.key({ modkey }, 'space', function()
+    awful.key({ modkey }, 'a', function()
         awful.layout.inc(1)
     end, { description = 'select next', group = 'layout' }),
-    awful.key({ modkey, 'Shift' }, 'space', function()
+    awful.key({ modkey, 'Shift' }, 'a', function()
         awful.layout.inc(-1)
     end, { description = 'select previous', group = 'layout' }),
 
@@ -183,7 +183,7 @@ keys.global_keys = gears.table.join(
     -- awful.key({ modkey }, ' ', function()
     --     awful.util.spawn_with_shell('rofi -show drun')
     -- end),
-    awful.key({ modkey }, 'a', function()
+    awful.key({ modkey }, ' ', function()
         awful.util.spawn_with_shell('rofi -show drun')
     end),
     awful.key({ modkey }, 'Tab', function()
