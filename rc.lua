@@ -236,6 +236,17 @@ client.connect_signal('manage', function(c)
     c.shape = round_rect
 end)
 
+-- Make floating windows always on top
+client.connect_signal("property::floating", function(c)
+    if not c.fullscreen then
+        if c.floating then
+            c.ontop = true
+        else
+            c.ontop = false
+        end
+    end
+end)
+
 -- Autostart
 awful.spawn.with_shell('autorandr -l default')
 awful.spawn.with_shell('picom')
