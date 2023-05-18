@@ -206,16 +206,16 @@ keys.global_keys = gears.table.join(
 
     awful.key({ modkey, 'Shift' }, 's', function()
         awful.util.spawn(
-            "scrot -e 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S; \
-            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S 2>/dev/null'",
+            "scrot -e 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S.png; \
+            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S.png 2>/dev/null'",
             false
         )
     end, { description = 'take full screenshot', group = 'client' }),
 
     awful.key({ modkey, 'Control' }, 's', function()
         awful.util.spawn(
-            "scrot -ube 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S; \
-            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S 2>/dev/null'",
+            "scrot -ube 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S.png; \
+            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S.png 2>/dev/null'",
             false
         )
     end, { description = 'take window screenshot', group = 'client' }),
@@ -223,8 +223,8 @@ keys.global_keys = gears.table.join(
     awful.key({ modkey }, 's', function()
         awful.util.spawn(
             "scrot -s -l width=3,color='#1688f0',mode=edge,opacity=75 \
-            -e 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S; \
-            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S 2>/dev/null'",
+            -e 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S.png; \
+            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S.png 2>/dev/null'",
             false
         )
     end, { description = 'take regional screenshot', group = 'client' }),
