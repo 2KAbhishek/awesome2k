@@ -204,30 +204,27 @@ keys.global_keys = gears.table.join(
         menubar.show()
     end, { description = 'show the menubar', group = 'launcher' }),
 
-    awful.key({}, 'Print', function()
-        awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false)
-    end, { description = 'take a screenshot', group = 'client' }),
-    awful.key({ modkey, 'Control' }, 'Print', function()
-        awful.util.spawn("scrot -ube 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false)
-    end, { description = 'take window screenshot', group = 'client' }),
-    awful.key({ modkey }, 'Print', function()
+    awful.key({ modkey, 'Shift' }, 's', function()
         awful.util.spawn(
-            "scrot -s -l width=3,color='#1688f0',mode=edge,opacity=90 -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'",
+            "scrot -e 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S; \
+            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S 2>/dev/null'",
             false
         )
-    end, { description = 'take regional screenshot', group = 'client' }),
-
-    awful.key({ modkey, 'Shift' }, 's', function()
-        awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false)
     end, { description = 'take full screenshot', group = 'client' }),
 
     awful.key({ modkey, 'Control' }, 's', function()
-        awful.util.spawn("scrot -ube 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false)
+        awful.util.spawn(
+            "scrot -ube 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S; \
+            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S 2>/dev/null'",
+            false
+        )
     end, { description = 'take window screenshot', group = 'client' }),
 
     awful.key({ modkey }, 's', function()
         awful.util.spawn(
-            "scrot -s -l width=3,color='#1688f0',mode=edge,opacity=90 -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'",
+            "scrot -s -l width=3,color='#1688f0',mode=edge,opacity=75 \
+            -e 'mv $f ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S; \
+            xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/snap-%d-%m-%y-%H-%M-%S 2>/dev/null'",
             false
         )
     end, { description = 'take regional screenshot', group = 'client' }),
