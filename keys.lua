@@ -183,7 +183,7 @@ keys.global_keys = gears.table.join(
     -- awful.key({ modkey }, ' ', function()
     --     awful.util.spawn_with_shell('rofi -show drun')
     -- end),
-    awful.key({ modkey }, ' ', function()
+    awful.key({ modkey }, 'space', function()
         awful.util.spawn_with_shell('rofi -show drun')
     end),
     awful.key({ modkey }, 'Tab', function()
