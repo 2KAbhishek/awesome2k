@@ -94,9 +94,6 @@ keys.global_keys = gears.table.join(
     awful.key({ modkey, 'Control' }, 'k', function()
         awful.screen.focus_relative(-1)
     end, { description = 'focus the previous screen', group = 'screen' }),
-    awful.key({ modkey }, 's', function()
-        awful.screen.focus_relative(-1)
-    end, { description = 'focus the previous screen', group = 'screen' }),
     awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
     awful.key({ modkey }, 'Tab', function()
         awful.client.focus.history.previous()
@@ -219,6 +216,22 @@ keys.global_keys = gears.table.join(
             false
         )
     end, { description = 'take regional screenshot', group = 'client' }),
+
+    awful.key({ modkey, 'Shift' }, 's', function()
+        awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false)
+    end, { description = 'take full screenshot', group = 'client' }),
+
+    awful.key({ modkey, 'Control' }, 's', function()
+        awful.util.spawn("scrot -ube 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'", false)
+    end, { description = 'take window screenshot', group = 'client' }),
+
+    awful.key({ modkey }, 's', function()
+        awful.util.spawn(
+            "scrot -s -l width=3,color='#1688f0',mode=edge,opacity=90 -e 'mv $f ~/Pictures/Screenshots/snap-$f 2>/dev/null'",
+            false
+        )
+    end, { description = 'take regional screenshot', group = 'client' }),
+
     -- Volume Keys
     awful.key({}, 'XF86AudioLowerVolume', function()
         awful.util.spawn('amixer -q -D pulse sset Master 5%-', false)
