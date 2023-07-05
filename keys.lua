@@ -78,6 +78,9 @@ keys.global_keys = gears.table.join(
     awful.key({ modkey }, 'k', function()
         awful.client.focus.byidx(-1)
     end, { description = 'focus previous by index', group = 'client' }),
+    awful.key({ 'Mod1', 'Control' }, 'l', function()
+        awful.spawn.with_shell('i3lock-fancy')
+    end, { description = 'lock screen', group = 'client' }),
     -- awful.key({ modkey, }, "w", function() main_menu:show() end,
     --     { description = "show main menu", group = "awesome" }),
 
