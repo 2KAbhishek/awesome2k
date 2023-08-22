@@ -33,8 +33,8 @@ local awesome_menu = {
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end,
     },
-    { 'Manual', terminal .. ' -e man awesome' },
-    { 'Config', editor_cmd .. ' ' .. awesome.conffile },
+    { 'Manual',  terminal .. ' -e man awesome' },
+    { 'Config',  editor_cmd .. ' ' .. awesome.conffile },
     { 'Restart', awesome.restart },
     {
         'Quit',
@@ -71,7 +71,6 @@ keys.global_keys = gears.table.join(
     awful.key({ modkey }, 'Left', awful.tag.viewprev, { description = 'view previous', group = 'tag' }),
     awful.key({ modkey }, 'Right', awful.tag.viewnext, { description = 'view next', group = 'tag' }),
     awful.key({ modkey }, 'Escape', awful.tag.history.restore, { description = 'go back', group = 'tag' }),
-
     awful.key({ modkey }, 'j', function()
         awful.client.focus.byidx(1)
     end, { description = 'focus next by index', group = 'client' }),
@@ -129,7 +128,6 @@ keys.global_keys = gears.table.join(
             height = 300,
         })
     end, { description = 'open a floating terminal', group = 'launcher' }),
-
     awful.key({ 'Mod1', 'Control' }, 'e', function()
         awful.spawn(files)
     end, { description = 'open a file explorer', group = 'launcher' }),
@@ -137,10 +135,8 @@ keys.global_keys = gears.table.join(
     awful.key({ 'Mod1', 'Control' }, 'w', function()
         awful.spawn(browser)
     end, { description = 'open a web browser', group = 'launcher' }),
-
     awful.key({ modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
     awful.key({ modkey, 'Shift' }, 'q', awesome.quit, { description = 'quit awesome', group = 'awesome' }),
-
     awful.key({ modkey }, 'l', function()
         awful.tag.incmwfact(0.05)
     end, { description = 'increase master width factor', group = 'layout' }),
@@ -262,12 +258,12 @@ keys.global_keys = gears.table.join(
 )
 
 keys.client_keys = gears.table.join(
-    awful.key({ modkey }, 'f', function(c)
+    awful.key({ modkey, 'Control' }, 'f', function(c)
         c.fullscreen = not c.fullscreen
         c:raise()
     end, { description = 'toggle fullscreen', group = 'client' }),
     awful.key(
-        { modkey, 'Control' },
+        { modkey },
         'f',
         awful.client.floating.toggle,
         { description = 'toggle floating', group = 'client' }
