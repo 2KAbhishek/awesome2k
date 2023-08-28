@@ -65,7 +65,75 @@ root.buttons(gears.table.join(
     awful.button({}, 5, awful.tag.viewprev)
 ))
 
--- Key bindings
+-- Window keys
+keys.client_keys = gears.table.join(
+    awful.key({ modkey }, 'f', awful.client.floating.toggle, { description = 'toggle floating', group = 'client' }),
+    awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
+    awful.key({ modkey }, 'j', function()
+        awful.client.focus.byidx(1)
+    end, { description = 'focus next by index', group = 'client' }),
+
+    awful.key({ modkey }, 'k', function()
+        awful.client.focus.byidx(-1)
+    end, { description = 'focus previous by index', group = 'client' }),
+
+    awful.key({ modkey }, 'Tab', function()
+        awful.client.focus.history.previous()
+        if client.focus then
+            client.focus:raise()
+        end
+    end, { description = 'focus previous', group = 'client' }),
+
+    awful.key({ modkey, 'Shift' }, 'e', function()
+        local c = awful.client.restore()
+        -- Focus restored client
+        if c then
+            c:emit_signal('request::activate', 'key.unminimize', { raise = true })
+        end
+    end, { description = 'restore minimized', group = 'client' }),
+
+    awful.key({ modkey, 'Control' }, 'f', function(c)
+        c.fullscreen = not c.fullscreen
+        c:raise()
+    end, { description = 'toggle fullscreen', group = 'client' }),
+
+    awful.key({ modkey }, 'q', function(c)
+        c:kill()
+    end, { description = 'close', group = 'client' }),
+
+    awful.key({ modkey }, 'Return', function(c)
+        c:swap(awful.client.getmaster())
+    end, { description = 'move to master', group = 'client' }),
+
+    awful.key({ modkey }, 'w', function(c)
+        c:move_to_screen()
+    end, { description = 'move to screen', group = 'client' }),
+
+    awful.key({ modkey, 'Shift' }, 't', function(c)
+        c.ontop = not c.ontop
+    end, { description = 'toggle keep on top', group = 'client' }),
+
+    awful.key({ modkey }, 'e', function(c)
+        c.minimized = true
+    end, { description = 'minimize', group = 'client' }),
+
+    awful.key({ modkey }, 'm', function(c)
+        c.maximized = not c.maximized
+        c:raise()
+    end, { description = '(un)maximize', group = 'client' }),
+
+    awful.key({ modkey, 'Control' }, 'm', function(c)
+        c.maximized_vertical = not c.maximized_vertical
+        c:raise()
+    end, { description = '(un)maximize vertically', group = 'client' }),
+
+    awful.key({ modkey, 'Shift' }, 'm', function(c)
+        c.maximized_horizontal = not c.maximized_horizontal
+        c:raise()
+    end, { description = '(un)maximize horizontally', group = 'client' })
+)
+
+-- System bindings
 keys.global_keys = gears.table.join(
     keys.global_keys,
     awful.key({ modkey, 'Control' }, 'r', awesome.restart, { description = 'reload awesome', group = 'awesome' }),
@@ -125,7 +193,7 @@ keys.global_keys = gears.table.join(
     end, { description = 'select previous', group = 'layout' })
 )
 
--- Standard program
+-- Standard programs
 keys.global_keys = gears.table.join(
     keys.global_keys,
 
@@ -268,74 +336,6 @@ keys.global_keys = gears.table.join(
     end, { description = 'brightness up', group = 'function' })
 )
 
--- Window keys
-keys.client_keys = gears.table.join(
-    awful.key({ modkey }, 'f', awful.client.floating.toggle, { description = 'toggle floating', group = 'client' }),
-    awful.key({ modkey }, 'u', awful.client.urgent.jumpto, { description = 'jump to urgent client', group = 'client' }),
-    awful.key({ modkey }, 'j', function()
-        awful.client.focus.byidx(1)
-    end, { description = 'focus next by index', group = 'client' }),
-
-    awful.key({ modkey }, 'k', function()
-        awful.client.focus.byidx(-1)
-    end, { description = 'focus previous by index', group = 'client' }),
-
-    awful.key({ modkey }, 'Tab', function()
-        awful.client.focus.history.previous()
-        if client.focus then
-            client.focus:raise()
-        end
-    end, { description = 'focus previous', group = 'client' }),
-
-    awful.key({ modkey, 'Shift' }, 'e', function()
-        local c = awful.client.restore()
-        -- Focus restored client
-        if c then
-            c:emit_signal('request::activate', 'key.unminimize', { raise = true })
-        end
-    end, { description = 'restore minimized', group = 'client' }),
-
-    awful.key({ modkey, 'Control' }, 'f', function(c)
-        c.fullscreen = not c.fullscreen
-        c:raise()
-    end, { description = 'toggle fullscreen', group = 'client' }),
-
-    awful.key({ modkey }, 'q', function(c)
-        c:kill()
-    end, { description = 'close', group = 'client' }),
-
-    awful.key({ modkey }, 'Return', function(c)
-        c:swap(awful.client.getmaster())
-    end, { description = 'move to master', group = 'client' }),
-
-    awful.key({ modkey }, 'w', function(c)
-        c:move_to_screen()
-    end, { description = 'move to screen', group = 'client' }),
-
-    awful.key({ modkey, 'Shift' }, 't', function(c)
-        c.ontop = not c.ontop
-    end, { description = 'toggle keep on top', group = 'client' }),
-
-    awful.key({ modkey }, 'e', function(c)
-        c.minimized = true
-    end, { description = 'minimize', group = 'client' }),
-
-    awful.key({ modkey }, 'm', function(c)
-        c.maximized = not c.maximized
-        c:raise()
-    end, { description = '(un)maximize', group = 'client' }),
-
-    awful.key({ modkey, 'Control' }, 'm', function(c)
-        c.maximized_vertical = not c.maximized_vertical
-        c:raise()
-    end, { description = '(un)maximize vertically', group = 'client' }),
-
-    awful.key({ modkey, 'Shift' }, 'm', function(c)
-        c.maximized_horizontal = not c.maximized_horizontal
-        c:raise()
-    end, { description = '(un)maximize horizontally', group = 'client' })
-)
-
 -- Bind all key numbers to tags.
 for i = 1, 9 do
     keys.global_keys = gears.table.join(
@@ -386,7 +386,7 @@ keys.global_keys = gears.table.join(
     awful.key({ modkey }, 'Left', awful.tag.viewprev, { description = 'view previous', group = 'tag' }),
     awful.key({ modkey }, 'Right', awful.tag.viewnext, { description = 'view next', group = 'tag' }),
     awful.key({ modkey }, 'Escape', awful.tag.history.restore, { description = 'go back', group = 'tag' }),
-    awful.key({ modkey }, '1', function()
+    awful.key({ modkey }, '#1', function()
         local screen = awful.screen.focused()
         local tag = screen.tags[1]
         if tag then
@@ -394,7 +394,7 @@ keys.global_keys = gears.table.join(
         end
     end, { description = 'switch to tag #', group = 'tag' }),
 
-    awful.key({ modkey, 'Control' }, '1', function()
+    awful.key({ modkey, 'Control' }, '#1', function()
         local screen = awful.screen.focused()
         local tag = screen.tags[1]
         if tag then
@@ -402,7 +402,7 @@ keys.global_keys = gears.table.join(
         end
     end, { description = 'merge tag #', group = 'tag' }),
 
-    awful.key({ modkey, 'Shift' }, '1', function()
+    awful.key({ modkey, 'Shift' }, '#1', function()
         if client.focus then
             local tag = client.focus.screen.tags[1]
             if tag then
@@ -411,7 +411,7 @@ keys.global_keys = gears.table.join(
         end
     end, { description = 'move to tag #', group = 'tag' }),
 
-    awful.key({ modkey, 'Control', 'Shift' }, '1', function()
+    awful.key({ modkey, 'Control', 'Shift' }, '#1', function()
         if client.focus then
             local tag = client.focus.screen.tags[1]
             if tag then
