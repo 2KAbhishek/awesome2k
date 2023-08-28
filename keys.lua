@@ -265,6 +265,10 @@ keys.global_keys = gears.table.join(
         awful.util.spawn_with_shell('rofi -show drun')
     end, { description = 'app launcher', group = 'launcher' }),
 
+    awful.key({ modkey }, 'r', function()
+        awful.util.spawn_with_shell('rofi -show run')
+    end, { description = 'run binaries', group = 'launcher' }),
+
     awful.key({ 'Mod1' }, 'Tab', function()
         awful.util.spawn_with_shell('rofi -show window')
     end, { description = 'window switcher', group = 'launcher' }),
