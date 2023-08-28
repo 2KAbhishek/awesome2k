@@ -18,7 +18,7 @@ local keys = {}
 -- This is used later as the default terminal and editor to run.
 local terminal = 'kitty'
 local browser = 'firefox'
-local files = 'thunar'
+local files = 'nautilus --new-window'
 local editor = os.getenv('EDITOR') or 'nvim'
 local editor_cmd = terminal .. ' -e ' .. editor
 
