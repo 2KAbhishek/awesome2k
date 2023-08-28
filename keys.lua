@@ -117,6 +117,19 @@ keys.global_keys = gears.table.join(
         awful.spawn(terminal)
     end, { description = 'open a terminal', group = 'launcher' }),
 
+    awful.key({modkey, 'Control'}, 'n', function()
+        awful.spawn(terminal .. ' -e notes', {
+            floating = true,
+            tag = mouse.screen.selected_tag,
+            placement = awful.placement.top,
+            opacity = 1,
+            ontop = true,
+            maximized_horizontal = false,
+            height = 600,
+            width = 900,
+        })
+    end, { description = 'open floating notes', group = 'launcher' }),
+
     awful.key({}, 'F12', function()
         awful.spawn(terminal, {
             floating = true,
