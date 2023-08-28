@@ -255,7 +255,7 @@ keys.global_keys = gears.table.join(
         awful.spawn(browser)
     end, { description = 'open a web browser', group = 'launcher' }),
 
-    awful.key({ modkey }, 'd', function()
+    awful.key({ modkey }, 'r', function()
         awful.util.spawn_with_shell(
             "dmenu_run -b -p '' -i -fn 'FiraCode Nerd Font-10' -nf '#ccc' -nb '#000' -sf '#fff' -sb '#1688f0'"
         )
@@ -265,7 +265,7 @@ keys.global_keys = gears.table.join(
         awful.util.spawn_with_shell('rofi -show drun')
     end, { description = 'app launcher', group = 'launcher' }),
 
-    awful.key({ modkey }, 'r', function()
+    awful.key({ modkey }, 'd', function()
         awful.util.spawn_with_shell('rofi -show run')
     end, { description = 'run binaries', group = 'launcher' }),
 
