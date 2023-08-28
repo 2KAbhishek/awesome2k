@@ -57,7 +57,7 @@ awful.layout.layouts = {
 
 awful.screen.connect_for_each_screen(function(screen)
     -- Each screen has its own tag table.
-    awful.tag({ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }, screen, awful.layout.layouts[1])
+    awful.tag({ ' ', ' ', ' ', ' ', ' ' }, screen, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     screen.prompt_widget = awful.widget.prompt()
@@ -237,7 +237,7 @@ client.connect_signal('manage', function(c)
 end)
 
 -- Make floating windows always on top
-client.connect_signal("property::floating", function(c)
+client.connect_signal('property::floating', function(c)
     if not c.fullscreen then
         if c.floating then
             c.ontop = true
