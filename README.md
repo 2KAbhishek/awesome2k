@@ -81,6 +81,8 @@ Comes with a bunch of customized widgets:
 - time
 - todo
 
+### Theming
+
 Add the following bash function to your `~/.bashrc` or `~/.zshrc` file to customize awesome and rofi accent colours
 
 ```bash
