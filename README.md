@@ -32,7 +32,7 @@
 
 ## What is this
 
-My personalized configs for awesome window manager, optimized for an awesome experience.
+My personalized configs for [awesome window manager](https://awesomewm.org/), optimized for an awesome experience.
 
 ### Widgets
 
