@@ -34,21 +34,6 @@
 
 My personalized configs for [awesome window manager](https://awesomewm.org/), optimized for an awesome experience.
 
-### Widgets
-
-Comes with a bunch of customized widgets:
-
-- audio
-- battery
-- cpu
-- disk
-- network
-- ram
-- session
-- text
-- time
-- todo
-
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
@@ -80,6 +65,21 @@ To get awesome2k, follow these steps:
 git clone https://github.com/2kabhishek/awesome2k
 ln -sfnv "$PWD/awesome2k" ~/.config/awesome
 ```
+
+### Widgets
+
+Comes with a bunch of customized widgets:
+
+- audio
+- battery
+- cpu
+- disk
+- network
+- ram
+- session
+- text
+- time
+- todo
 
 Add the following bash function to your `~/.bashrc` or `~/.zshrc` file to customize awesome and rofi accent colours
 
