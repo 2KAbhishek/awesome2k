@@ -127,6 +127,8 @@ Hit the ⭐ button if you found this useful.
 
 ## More Info
 
+- [sway2k](https://github.com/2kabhishek/sway2k) — Spiritual successor, Wayland based tiling wm configs
+
 <div align="center">
 
 <a href="https://github.com/2KAbhishek/awesome2k">Source</a> | <a href="https://2kabhishek.github.io/awesome2k">Website</a>
