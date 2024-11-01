@@ -83,7 +83,7 @@ Comes with a bunch of customized widgets:
 
 ### Theming
 
-Add the following bash function to your `~/.bashrc` or `~/.zshrc` file to customize awesome and rofi accent colours
+Add the following bash function to your `~/.bashrc` or `~/.zshrc` file to customize awesome and rofi accent colors
 
 ```bash
 accent() {
